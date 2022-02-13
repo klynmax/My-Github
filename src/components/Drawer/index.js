@@ -78,6 +78,7 @@ export default function PermanentDrawerLeft(props) {
           direction="row"
           justifyContent="center"
           alignItems="center"
+          item
         >
           <img 
             src={Logo} 
