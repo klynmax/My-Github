@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import Drawer from '../src/components/Drawer'
+import Drawer from './components/Drawer';
 
 ReactDOM.render(
   <React.StrictMode>
