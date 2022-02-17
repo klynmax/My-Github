@@ -2,31 +2,22 @@ import React from "react";
 import {
   BrowserRouter as Router,
   Route,
-  Link,
-  Routes
+  Routes,
 } from "react-router-dom";
 import Home from "./pages/Home";
 import Teste from "./pages/Teste";
+import Drawer from '../src/components/Drawer'
 
 function App() {
   return (
     <Router>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/Teste">Teste</Link>
-            </li>
-          </ul>
-        </nav>
+      <Drawer>
         <Routes>
-          <Route  exact path="/" element={<Home />} />
-          <Route  exact path="/Teste" element={<Teste />} />
+          <Route exact path="/" element={<Home />} />
+          <Route exact path="/Dashboard" element={<Home />} />
+          <Route exact path="/Teste" element={<Teste />} />
         </Routes>
-      </div>
+      </Drawer>
     </Router>
   );
 }
