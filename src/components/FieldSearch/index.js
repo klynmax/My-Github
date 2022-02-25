@@ -13,10 +13,12 @@ export default function InputAdornments() {
     setValues({ ...values, [prop]: event.target.value });
   };
 
+  console.log('teste', values)
+
   return (
     <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
       <div>
-        <FormControl sx={{ m: 1, width: '60ch' }} variant="outlined">
+        <FormControl /*sx={{ m: 1, width: '60ch' }}*/ variant="outlined">
           <OutlinedInput
             id="outlined-adornment-weight"
             value={values.weight}
@@ -24,10 +26,11 @@ export default function InputAdornments() {
             endAdornment={
                 <SearchIcon 
                     onClick={
-                        () => console.log('click')
+                        // () => console.log('click')
+                        handleChange('weight')
                     } 
                     sx={{
-                        cursor: 'pointer'
+                        cursor: 'pointer',
                     }}
                 />
             }
@@ -36,6 +39,10 @@ export default function InputAdornments() {
               'aria-label': 'weight',
             }}
             placeholder="Pesquisar"
+            sx={{
+              height: 32,
+              width: 500
+            }}
           />
         </FormControl>
       </div>

@@ -89,10 +89,10 @@ export default function PermanentDrawerLeft(props) {
         </List>
 
         <List>
-          <Link to="/Teste">
+          <Link to="/Users">
           <ListItem button>
             <MailIcon />
-            <Typography>Teste</Typography>
+            <Typography>Usuários</Typography>
           </ListItem>
           </Link>
         </List>

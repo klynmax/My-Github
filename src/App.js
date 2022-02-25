@@ -5,20 +5,23 @@ import {
   Routes,
 } from "react-router-dom";
 import Home from "./pages/Home";
-import Teste from "./pages/Teste";
+import Users from "./pages/Users";
 import Drawer from '../src/components/Drawer'
+import Provider from "./Context/Provide";
 
 function App() {
   return (
-    <Router>
-      <Drawer>
-        <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route exact path="/Dashboard" element={<Home />} />
-          <Route exact path="/Teste" element={<Teste />} />
-        </Routes>
-      </Drawer>
-    </Router>
+    <Provider>
+      <Router>
+        <Drawer>
+          <Routes>
+            <Route exact path="/" element={<Home />} />
+            <Route exact path="/Dashboard" element={<Home />} />
+            <Route exact path="/Users" element={<Users />} />
+          </Routes>
+        </Drawer>
+      </Router>
+    </Provider>
   );
 }
 
