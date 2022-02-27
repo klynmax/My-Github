@@ -30,7 +30,7 @@ export default function InputAdornments() {
                         handleChange('weight')
                     } 
                     sx={{
-                        cursor: 'pointer',
+                      cursor: 'pointer',
                     }}
                 />
             }
