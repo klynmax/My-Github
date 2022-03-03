@@ -52,7 +52,7 @@ export default function RecipeReviewCard() {
               <Card >
                 <CardHeader
                   avatar={
-                    <Avatar sx={{ bgcolor: red[500], width: 100, height: 100 }} aria-label="recipe">
+                    <Avatar sx={{ bgcolor: red[500], width: 60, height: 60 }} aria-label="recipe">
                       <CardMedia
                         component="img"
                         image={item.url}
@@ -113,7 +113,7 @@ export default function RecipeReviewCard() {
                 </CardContent>
                 <Divider />
                 <CardActions disableSpacing sx={{backgroundColor: '#eaeef2'}}>
-                  <IconButton aria-label="add to favorites" onClick={() => {alert('teste')}}>
+                  <IconButton aria-label="add to favorites">
                     <FavoriteIcon /*sx={{color: "#FF0000"}}*/ />
                   </IconButton>
                   <IconButton aria-label="share">
