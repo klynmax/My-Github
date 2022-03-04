@@ -19,6 +19,7 @@ import Divider from '@mui/material/Divider';
 import BookOutlinedIcon from '@mui/icons-material/BookOutlined';
 import PeopleOutlineIcon from '@mui/icons-material/PeopleOutline';
 import GroupsOutlinedIcon from '@mui/icons-material/GroupsOutlined';
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
 import { USERS } from '../../shared/Users.js';
 
@@ -33,7 +34,8 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function RecipeReviewCard() {
+export default function RecipeReviewCard(props) {
+  const {data} = props
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -47,7 +49,7 @@ export default function RecipeReviewCard() {
           display="flex"
           flexWrap="wrap"
         >
-          { USERS.map((item, index) => (
+          { data && data.map((item, index) => (
             <Box mx={1.1} sx={{ width: 365, marginTop: 2 }}>
               <Card >
                 <CardHeader
@@ -55,20 +57,15 @@ export default function RecipeReviewCard() {
                     <Avatar sx={{ bgcolor: red[500], width: 60, height: 60 }} aria-label="recipe">
                       <CardMedia
                         component="img"
-                        image={item.url}
+                        image={item.avatar_url}
                         alt="Paella dish"
                         sx={{borderRadius: '100%', width: 100}}
                       />
                     </Avatar>
                   }
-                  // action={
-                  //   <IconButton aria-label="settings">
-                  //     <MoreVertIcon />
-                  //   </IconButton>
-                  // }
                   sx={{fontSize: 100}}
-                  title={item.nome}
-                  // subheader="September 14, 2016"
+                  title={<b>{item.name}</b>}
+                  subheader={item.login}
                 />
                 
                 {/* <Divider /> */}
@@ -82,7 +79,7 @@ export default function RecipeReviewCard() {
                       <Typography sx={{whiteSpace: 'nowrap'}}>Repositórios Publicos:</Typography>
                     </Grid>
                     <Grid item>
-                      <Typography sx={{fontSize: 18}}><b>&nbsp;&nbsp;{item.repositorios}</b></Typography>
+                      <Typography sx={{fontSize: 18}}><b>&nbsp;&nbsp;{item.public_repos}</b></Typography>
                     </Grid>
                     {/* </Grid> */}
                   </Box>
@@ -94,7 +91,7 @@ export default function RecipeReviewCard() {
                       <Typography>Seguidores:</Typography>
                     </Grid>
                     <Grid item>
-                      <Typography sx={{fontSize: 18}}><b>&nbsp;&nbsp;{item.seguidores}</b></Typography>
+                      <Typography sx={{fontSize: 18}}><b>&nbsp;&nbsp;{item.followers}</b></Typography>
                     </Grid>
                   </Box>
 
@@ -106,7 +103,7 @@ export default function RecipeReviewCard() {
                       <Typography>Seguindo:</Typography>
                     </Grid>
                     <Grid item>
-                      <Typography sx={{fontSize: 18}}><b>&nbsp;&nbsp;{item.seguindo}</b></Typography>
+                      <Typography sx={{fontSize: 18}}><b>&nbsp;&nbsp;{item.following}</b></Typography>
                     </Grid>
                   </Box>
                   

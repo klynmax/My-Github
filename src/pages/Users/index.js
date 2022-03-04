@@ -18,7 +18,11 @@ import Table from '../../components/Table';
 
 function Users() {
 
+    const data = JSON.parse(localStorage.getItem('repository'));
+
     const [list, setList] = useState(true)
+
+    console.log('123', data)
 
     return(
         <Container fixed>
@@ -95,12 +99,12 @@ function Users() {
                 <Grid item lg={12}>
                     {
                         list === true ? (
-                            <Card />
+                            <Card data={data} />
                         )
                         :
                         (
                             <div style={{marginTop: 20}}>
-                                <Table />
+                                <Table data={data} />
                             </div>
                         )
                     }

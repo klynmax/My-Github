@@ -8,76 +8,10 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 
-const data = [
-  {
-    nome: 'Klynsman guedes',
-    repositorios: 10,
-    seguidores: 2,
-    seguindo: 2
-  },
-  {
-    nome: 'Klynsman guedes',
-    repositorios: 10,
-    seguidores: 2,
-    seguindo: 2
-  },
-  {
-    nome: 'Klynsman guedes',
-    repositorios: 10,
-    seguidores: 2,
-    seguindo: 2
-  },
-  {
-    nome: 'Klynsman guedes',
-    repositorios: 10,
-    seguidores: 2,
-    seguindo: 2
-  },
-  {
-    nome: 'Klynsman guedes',
-    repositorios: 10,
-    seguidores: 2,
-    seguindo: 2
-  },
-  {
-    nome: 'Klynsman guedes',
-    repositorios: 10,
-    seguidores: 2,
-    seguindo: 2
-  },
-  {
-    nome: 'Klynsman guedes',
-    repositorios: 10,
-    seguidores: 2,
-    seguindo: 2
-  },
-  {
-    nome: 'Klynsman guedes',
-    repositorios: 10,
-    seguidores: 2,
-    seguindo: 2
-  },
-  {
-    nome: 'Klynsman guedes',
-    repositorios: 10,
-    seguidores: 2,
-    seguindo: 2
-  },
-  {
-    nome: 'Klynsman guedes',
-    repositorios: 10,
-    seguidores: 2,
-    seguindo: 2
-  },
-  {
-    nome: 'Klynsman guedes',
-    repositorios: 10,
-    seguidores: 2,
-    seguindo: 2
-  }
-]
+export default function StickyHeadTable(props) {
 
-export default function StickyHeadTable() {
+  const {data} = props;
+
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -103,15 +37,23 @@ export default function StickyHeadTable() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {data
+            {data && data
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row) => {
                 return (
                   <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
-                    <TableCell >{row.nome}</TableCell>
-                    <TableCell align="center" >{row.repositorios}</TableCell>
-                    <TableCell align="center" >{row.seguidores}</TableCell>
-                    <TableCell align="center" >{row.seguindo}</TableCell>
+                    {
+                      row.name ? (
+                        <TableCell >{row.name}</TableCell>
+                      ):
+                      (
+                        <TableCell >{row.login}</TableCell>
+                      )
+                    }
+                    {/* <TableCell >{row.name}</TableCell> */}
+                    <TableCell align="center" >{row.public_repos}</TableCell>
+                    <TableCell align="center" >{row.followers}</TableCell>
+                    <TableCell align="center" >{row.following}</TableCell>
                   </TableRow>
                 );
               })}
