@@ -50,7 +50,6 @@ export default function StickyHeadTable(props) {
                         <TableCell >{row.login}</TableCell>
                       )
                     }
-                    {/* <TableCell >{row.name}</TableCell> */}
                     <TableCell align="center" >{row.public_repos}</TableCell>
                     <TableCell align="center" >{row.followers}</TableCell>
                     <TableCell align="center" >{row.following}</TableCell>

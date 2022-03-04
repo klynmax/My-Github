@@ -36,7 +36,7 @@ function Users() {
                 <Grid item lg={12}>
                     <Typography
                         sx={{
-                            fontSize: 10,
+                            fontSize: 12,
                         }}
                     ><b>Pesquisar usuários:</b></Typography>
                 </Grid>           
@@ -103,7 +103,7 @@ function Users() {
                         )
                         :
                         (
-                            <div style={{marginTop: 20}}>
+                            <div style={{marginTop: 40}}>
                                 <Table data={data} />
                             </div>
                         )

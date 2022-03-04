@@ -90,7 +90,7 @@ export default function InputAdornments() {
             placeholder="Pesquisar"
             sx={{
               height: 32,
-              width: 500
+              width: 380
             }}
           />
         </FormControl>
