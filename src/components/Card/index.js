@@ -5,14 +5,11 @@ import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
-import Collapse from '@mui/material/Collapse';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShareIcon from '@mui/icons-material/Share';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Divider from '@mui/material/Divider';
@@ -58,13 +55,11 @@ export default function RecipeReviewCard(props) {
     setData(repositories)
     setOpenModal(false)
     setSuccess(true)
-    console.log('79', repositories)
   }
 
   const handleClose = (event, reason) => {
     setSuccess(false);
   };
-
 
   return (
     <Grid container>
@@ -74,7 +69,7 @@ export default function RecipeReviewCard(props) {
           flexWrap="wrap"
         >
           { data && data.map((item, index) => (
-            <Box mx={1.1} sx={{ width: 365, marginTop: 5 }}>
+            <Box key={index} mx={1.1} sx={{ width: 365, marginTop: 5 }}>
               <Card >
                 <CardHeader
                   avatar={

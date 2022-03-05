@@ -6,7 +6,11 @@ import SearchIcon from '@mui/icons-material/Search';
 import Alert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
 
+import Context from '../../Context/Context';
+
 export default function InputAdornments() {
+
+  const { setData } = React.useContext(Context);
 
   const [values, setValues] = React.useState({
     weight: '',
@@ -46,17 +50,19 @@ export default function InputAdornments() {
             res
           ])
         )
+        setData(JSON.parse(localStorage.getItem('repository')))
       }
       setSuccess(true)
     } else {
       setErro(true)
     }
+    setValues({weight: ''});
   }
 
   return (
     <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
       <div>
-        <FormControl /*sx={{ m: 1, width: '60ch' }}*/ variant="outlined">
+        <FormControl variant="outlined">
           <OutlinedInput
             id="outlined-adornment-weight"
             value={values.weight}

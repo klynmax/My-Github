@@ -10,6 +10,8 @@ import Typography from '@mui/material/Typography';
 import ListItem from '@mui/material/ListItem';
 import MailIcon from '@mui/icons-material/Mail';
 import { Grid } from '@mui/material';
+import PersonIcon from '@mui/icons-material/Person';
+import DashboardIcon from '@mui/icons-material/Dashboard';
 
 import Logo from '../../assets/image/GitHub-Logo.png';
 
@@ -79,21 +81,19 @@ export default function PermanentDrawerLeft(props) {
             />
         </Grid>
 
-        <List>
-          <Link to="/Dashboard">
-          <ListItem button>
-            <MailIcon />
-            <Typography>Dashboard</Typography>
-          </ListItem>
+        <List sx={{marginTop: 3}}>
+          <Link to="/Dashboard" style={{textDecoration: 'none'}}>
+            <ListItem button>
+              <DashboardIcon sx={{color: "#000000"}} />
+              <Typography sx={{color: "#000000", marginLeft: 2}}>Dashboard</Typography>
+            </ListItem> 
           </Link>
-        </List>
 
-        <List>
-          <Link to="/Users">
-          <ListItem button>
-            <MailIcon />
-            <Typography>Usuários</Typography>
-          </ListItem>
+          <Link to="/Users" style={{textDecoration: 'none'}} >
+            <ListItem button>
+              <PersonIcon sx={{color: "#000000"}} />
+              <Typography sx={{color: "#000000", marginLeft: 2}} >Usuários</Typography>
+            </ListItem>
           </Link>
         </List>
 

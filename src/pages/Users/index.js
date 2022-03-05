@@ -29,7 +29,7 @@ function Users() {
 
     const [list, setList] = useState(true)
 
-    console.log('123', data)
+    // console.log('123', data.reverse())
 
     return(
         <Container fixed>
