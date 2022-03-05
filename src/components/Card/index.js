@@ -43,6 +43,13 @@ export default function RecipeReviewCard(props) {
     setExpanded(!expanded);
   };
 
+  const deleteById = (id) => {
+    const repositories = data.filter((item) => item.id !== id);
+    localStorage.setItem('repository', JSON.stringify(repositories));
+    console.log('79', repositories)
+  }
+
+
   return (
     <Grid container>
       <Grid item lg={12} >
@@ -114,7 +121,7 @@ export default function RecipeReviewCard(props) {
                   <IconButton aria-label="add to favorites">
                     <FavoriteIcon /*sx={{color: "#FF0000"}}*/ />
                   </IconButton>
-                  <IconButton aria-label="share">
+                  <IconButton aria-label="share" onClick={() => deleteById(item.id)}>
                     <DeleteIcon />
                   </IconButton>
                   

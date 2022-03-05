@@ -3,13 +3,13 @@ import Context from "./Context";
 
 const Provider = ({ children }) => {
 
-    const [name, setName] = React.useState('')
+    const [data, setData] = React.useState('')
     return(
         <Context.Provider 
             value={{
-                data: 'Home',
-                setName,
-                name
+                // data: 'Home',
+                setData,
+                data
             }}
         >
             {children}
