@@ -6,13 +6,11 @@ import Card from '../../components/Card'
 
 function Home() {
     const { data } = useContext(Context);
-    console.log(data)
+    
     /* data && data.name => verificar se ele existe */
     return(
         <div>
-            <h1>{data}</h1>
-            <FieldSearch />
-            <Card />
+            <h1>Aqui será o dashboard</h1>
         </div>
     )
 }

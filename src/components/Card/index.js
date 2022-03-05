@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useContext } from 'react';
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
@@ -21,8 +21,11 @@ import PeopleOutlineIcon from '@mui/icons-material/PeopleOutline';
 import GroupsOutlinedIcon from '@mui/icons-material/GroupsOutlined';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
+import Alert from '@mui/material/Alert';
+import Snackbar from '@mui/material/Snackbar';
 
-import { USERS } from '../../shared/Users.js';
+import Context from '../../Context/Context';
+import Dialog from '../../components/Dialog';
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -36,8 +39,14 @@ const ExpandMore = styled((props) => {
 }));
 
 export default function RecipeReviewCard(props) {
+
   const {data} = props
+
   const [expanded, setExpanded] = React.useState(false);
+  const [openModal, setOpenModal] = React.useState(false);
+  const [success, setSuccess] = React.useState(false)
+
+  const { setData } = useContext(Context);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -46,8 +55,15 @@ export default function RecipeReviewCard(props) {
   const deleteById = (id) => {
     const repositories = data.filter((item) => item.id !== id);
     localStorage.setItem('repository', JSON.stringify(repositories));
+    setData(repositories)
+    setOpenModal(false)
+    setSuccess(true)
     console.log('79', repositories)
   }
+
+  const handleClose = (event, reason) => {
+    setSuccess(false);
+  };
 
 
   return (
@@ -121,7 +137,7 @@ export default function RecipeReviewCard(props) {
                   <IconButton aria-label="add to favorites">
                     <FavoriteIcon /*sx={{color: "#FF0000"}}*/ />
                   </IconButton>
-                  <IconButton aria-label="share" onClick={() => deleteById(item.id)}>
+                  <IconButton aria-label="share" onClick={() => setOpenModal(true)}>
                     <DeleteIcon />
                   </IconButton>
                   
@@ -135,10 +151,28 @@ export default function RecipeReviewCard(props) {
                   </ExpandMore>
                 </CardActions>
                 </Card>
+
+                <Dialog  
+                  open={openModal}  
+                  close={() => setOpenModal(false)} 
+                  remove={() => deleteById(item.id)}
+                />
             </Box>
             ))
           }
         </Box>
+        <Snackbar anchorOrigin={{ vertical: 'top', horizontal: 'right' }} open={success} autoHideDuration={4000} onClose={handleClose}>
+            <Alert 
+              onClose={handleClose} 
+              severity="success" 
+              sx={{ 
+                width: '100%',
+                marginTop: 7
+              }}
+            >
+              Usuário(a) removido com sussesso!
+            </Alert>
+          </Snackbar>
       </Grid>
     </Grid>
   );

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import { Typography } from "@mui/material";
@@ -15,10 +15,17 @@ import SearchIcon from '@mui/icons-material/Search';
 import FieldSearch from '../../components/FieldSearch';
 import Card from '../../components/Card';
 import Table from '../../components/Table';
+import Context from '../../Context/Context'
 
 function Users() {
 
-    const data = JSON.parse(localStorage.getItem('repository'));
+    const repo = JSON.parse(localStorage.getItem('repository'));
+
+    const { data, setData } = useContext(Context);
+
+    useEffect(() => {
+        setData(repo)
+    }, [])
 
     const [list, setList] = useState(true)
 
