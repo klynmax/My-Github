@@ -7,6 +7,8 @@ import Alert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
 
 import Context from '../../Context/Context';
+import AlertSuccess from '../AlertSuccess';
+import AlertErro from '../AlertErro';
 
 export default function InputAdornments() {
 
@@ -88,31 +90,17 @@ export default function InputAdornments() {
         </FormControl>
       </div>
 
-          <Snackbar anchorOrigin={{ vertical: 'top', horizontal: 'right' }} open={erro} autoHideDuration={4000} onClose={handleClose}>
-            <Alert 
-              onClose={handleClose} 
-              severity="error" 
-              sx={{ 
-                width: '100%',
-                marginTop: 7
-              }}
-            >
-              Usuário(a) não encontrado!
-            </Alert>
-          </Snackbar>
+      <AlertSuccess 
+        openAlert={success}
+        closeAlert={handleClose}
+        text={"Usuário(a) cadastrado com sussesso!"}
+      />
 
-          <Snackbar anchorOrigin={{ vertical: 'top', horizontal: 'right' }} open={success} autoHideDuration={4000} onClose={handleClose}>
-            <Alert 
-              onClose={handleClose} 
-              severity="success" 
-              sx={{ 
-                width: '100%',
-                marginTop: 7
-              }}
-            >
-              Usuário(a) cadastrado com sussesso!
-            </Alert>
-          </Snackbar>
+      <AlertErro 
+        openAlertErro={erro}
+        closeAlertErro={handleClose}
+        textErro={"Usuário(a) não encontrado!"}
+      />
     </Box>
   );
 }

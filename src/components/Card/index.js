@@ -18,11 +18,10 @@ import PeopleOutlineIcon from '@mui/icons-material/PeopleOutline';
 import GroupsOutlinedIcon from '@mui/icons-material/GroupsOutlined';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
-import Alert from '@mui/material/Alert';
-import Snackbar from '@mui/material/Snackbar';
 
 import Context from '../../Context/Context';
 import Dialog from '../../components/Dialog';
+import AlertSuccess from '../AlertSuccess';
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -34,6 +33,12 @@ const ExpandMore = styled((props) => {
     duration: theme.transitions.duration.shortest,
   }),
 }));
+
+const styles = {
+   link: {
+    cursor: 'pointer',
+   }
+};
 
 export default function RecipeReviewCard(props) {
 
@@ -61,6 +66,10 @@ export default function RecipeReviewCard(props) {
     setSuccess(false);
   };
 
+  const redirect = (url) => {
+    window.location.href = url
+  }
+
   return (
     <Grid container>
       <Grid item lg={12} >
@@ -73,7 +82,11 @@ export default function RecipeReviewCard(props) {
               <Card >
                 <CardHeader
                   avatar={
-                    <Avatar sx={{ bgcolor: red[500], width: 60, height: 60 }} aria-label="recipe">
+                    <Avatar 
+                      onClick={() => redirect(item.html_url)}
+                      sx={{ bgcolor: red[500], width: 60, height: 60, cursor: 'pointer' }} 
+                      aria-label="recipe"
+                    >
                       <CardMedia
                         component="img"
                         image={item.avatar_url}
@@ -83,8 +96,21 @@ export default function RecipeReviewCard(props) {
                     </Avatar>
                   }
                   sx={{fontSize: 100}}
-                  title={<b>{item.name}</b>}
-                  subheader={item.login}
+                  title={
+                    <b 
+                      onClick={() => redirect(item.html_url)} 
+                      style={styles.link}
+                    >
+                      {item.name}
+                    </b>
+                  }
+                  subheader={
+                    <i
+                      onClick={() => redirect(item.html_url)} 
+                      style={styles.link}
+                    >
+                      {item.login}
+                      </i>}
                 />
                 
                 {/* <Divider /> */}
@@ -156,18 +182,11 @@ export default function RecipeReviewCard(props) {
             ))
           }
         </Box>
-        <Snackbar anchorOrigin={{ vertical: 'top', horizontal: 'right' }} open={success} autoHideDuration={4000} onClose={handleClose}>
-            <Alert 
-              onClose={handleClose} 
-              severity="success" 
-              sx={{ 
-                width: '100%',
-                marginTop: 7
-              }}
-            >
-              Usuário(a) removido com sussesso!
-            </Alert>
-          </Snackbar>
+        <AlertSuccess 
+          openAlert={success}
+          closeAlert={handleClose}
+          text={"Usuário(a) removido com sussesso!"}
+        />
       </Grid>
     </Grid>
   );

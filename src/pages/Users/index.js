@@ -17,6 +17,18 @@ import Card from '../../components/Card';
 import Table from '../../components/Table';
 import Context from '../../Context/Context'
 
+const styles = {
+    iconActive: {
+        height: 32, 
+        width: 32,
+        color: '#000000'
+    },
+    iconDisabled: {
+        height: 32, 
+        width: 32,
+    }
+  };
+
 function Users() {
 
     const repo = JSON.parse(localStorage.getItem('repository'));
@@ -56,20 +68,13 @@ function Users() {
                         <>
                             <IconButton>
                                 <GridViewRoundedIcon 
-                                    sx={{
-                                        height: 32, 
-                                        width: 32,
-                                        color: '#000000'
-                                    }} 
-                                    />
+                                    sx={styles.iconActive}
+                                />
                             </IconButton>
                             <IconButton>
                                 <DensityMediumOutlinedIcon 
                                     onClick={() => setList(false)}
-                                    sx={{
-                                        height: 32, 
-                                        width: 32,
-                                    }} 
+                                    sx={styles.iconDisabled} 
                                     />
                             </IconButton>
                         </>
@@ -79,21 +84,14 @@ function Users() {
                             <>
                                 <IconButton>
                                     <GridViewOutlinedIcon 
-                                        sx={{
-                                            height: 32, 
-                                            width: 32,
-                                        }} 
+                                        sx={styles.iconDisabled}  
                                         onClick={() => setList(true)}
                                     />
                                 </IconButton>
 
                                 <IconButton>
                                     <TableRowsRoundedIcon 
-                                        sx={{
-                                            height: 32, 
-                                            width: 32,
-                                            color: '#000000'
-                                        }} 
+                                        sx={styles.iconActive}
                                     />
                                 </IconButton>
                             </>
