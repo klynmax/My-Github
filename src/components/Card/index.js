@@ -154,7 +154,7 @@ export default function RecipeReviewCard(props) {
                   
                 </CardContent>
                 <Divider />
-                <CardActions disableSpacing sx={{backgroundColor: '#eaeef2', height: 40}}>
+                <CardActions disableSpacing sx={{/*backgroundColor: '#eaeef2',*/ height: 40}}>
                   <IconButton aria-label="add to favorites">
                     <FavoriteIcon /*sx={{color: "#FF0000"}}*/ />
                   </IconButton>
@@ -168,7 +168,8 @@ export default function RecipeReviewCard(props) {
                     aria-expanded={expanded}
                     aria-label="show more"
                   >
-                    <AddIcon />
+                    {/* <AddIcon /> */}
+                    <Typography sx={{fontSize: 12}}>Detalhes</Typography>
                   </ExpandMore>
                 </CardActions>
                 </Card>
