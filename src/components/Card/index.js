@@ -9,15 +9,13 @@ import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { red } from '@mui/material/colors';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Divider from '@mui/material/Divider';
-import BookOutlinedIcon from '@mui/icons-material/BookOutlined';
-import PeopleOutlineIcon from '@mui/icons-material/PeopleOutline';
-import GroupsOutlinedIcon from '@mui/icons-material/GroupsOutlined';
-import AddIcon from '@mui/icons-material/Add';
-import DeleteIcon from '@mui/icons-material/Delete';
+
+import { FiUserPlus, FiUserCheck, FiTrash } from "react-icons/fi";
+import { GoRepo } from "react-icons/go";
+import { BiLike } from "react-icons/bi";
 
 import Context from '../../Context/Context';
 import Dialog from '../../components/Dialog';
@@ -38,6 +36,26 @@ const ExpandMore = styled((props) => {
 const styles = {
    link: {
     cursor: 'pointer',
+   },
+   icons: {
+     width: 20,
+     height: 20,
+     // color: '#FFD700'
+   },
+   iconGreen: {
+    width: 20,
+    height: 20,
+    color: '#008000'
+   },
+   iconOrange: {
+    width: 20,
+    height: 20,
+    color: '#FF8C00'
+   },
+   iconsFooter: {
+    width: 20,
+    height: 20,
+    color: '#000000'
    }
 };
 
@@ -136,12 +154,10 @@ export default function RecipeReviewCard(props) {
                       </i>}
                 />
                 
-                {/* <Divider /> */}
-
-                <CardContent>
+                <CardContent sx={{backgroundColor: '#eaeef2', borderRadius: 1}}>
                   <Box display="flex">
                     <Grid item lg={2} >
-                      <BookOutlinedIcon />
+                      <GoRepo style={styles.icons} />
                     </Grid>
                     <Grid item>
                       <Typography sx={{whiteSpace: 'nowrap'}}>Repositórios Publicos:</Typography>
@@ -153,19 +169,19 @@ export default function RecipeReviewCard(props) {
                   </Box>
                   <Box display="flex">
                     <Grid item lg={2}>
-                      <PeopleOutlineIcon sx={{color: "#2DA44E"}} />
+                      <FiUserPlus style={styles.iconGreen} />
                     </Grid>
                     <Grid item>
                       <Typography>Seguidores:</Typography>
                     </Grid>
                     <Grid item>
-                      <Typography sx={{fontSize: 18}}><b>&nbsp;&nbsp;{item.followers}</b></Typography>
+                      <Typography style={{fontSize: 18}}><b>&nbsp;&nbsp;{item.followers}</b></Typography>
                     </Grid>
                   </Box>
 
                   <Box display="flex">
                     <Grid item lg={2}>
-                    <GroupsOutlinedIcon sx={{color: "#0969DA"}} />
+                    <FiUserCheck style={styles.iconOrange} />
                     </Grid>
                     <Grid item>
                       <Typography>Seguindo:</Typography>
@@ -174,15 +190,16 @@ export default function RecipeReviewCard(props) {
                       <Typography sx={{fontSize: 18}}><b>&nbsp;&nbsp;{item.following}</b></Typography>
                     </Grid>
                   </Box>
-                  
                 </CardContent>
+                    
                 <Divider />
-                <CardActions disableSpacing sx={{/*backgroundColor: '#eaeef2',*/ height: 40}}>
+
+                <CardActions disableSpacing sx={{ backgroundColor: '#fff', height: 40}}>
                   <IconButton aria-label="add to favorites">
-                    <FavoriteIcon /*sx={{color: "#FF0000"}}*/ />
+                    <BiLike style={styles.iconsFooter} />
                   </IconButton>
                   <IconButton aria-label="share" onClick={() => setOpenModal(true)}>
-                    <DeleteIcon />
+                    <FiTrash style={styles.iconsFooter} />
                   </IconButton>
                   
                   <ExpandMore
@@ -192,7 +209,7 @@ export default function RecipeReviewCard(props) {
                     aria-label="show more"
                   >
                     {/* <AddIcon /> */}
-                    <Typography sx={{fontSize: 12, color: "#42a5f5"}}>Detalhes</Typography>
+                    <Typography sx={{fontSize: 12, color: "#42a5f5"}}>Ver detalhes</Typography>
                   </ExpandMore>
                 </CardActions>
                 </Card>

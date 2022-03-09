@@ -18,9 +18,19 @@ import DialogContentText from '@mui/material/DialogContentText';
 import BookOutlinedIcon from '@mui/icons-material/BookOutlined';
 import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
 
+import { DiJava, DiJsBadge, DiPython, DiPhp, DiRuby } from "react-icons/di";
+import { SiTypescript, SiCsswizardry } from "react-icons/si";
+import { AiFillHtml5, AiOutlineFrown } from "react-icons/ai";
+import { BsFillEmojiFrownFill } from "react-icons/bs";
+
+
 const style = {
   title: { fontSize: 18 },
   subtitle: {
+    fontSize: 16,
+    marginTop: 1
+  },
+  font:{
     fontSize: 13
   },
   avatar: {
@@ -51,65 +61,17 @@ const style = {
       borderRadius: '6px',
       //outline: '1px solid slategrey',
     },
+  },
+  icon:{
+    width: 30, 
+    height: 30
+  },
+  box: {
+    backgroundColor: "#F0F8FF",
+    borderRadius: 4
   }
 }
 
-// const data = [
-//   {
-//     "login": "fehaa",
-//     "id": 5955068,
-//     "node_id": "MDQ6VXNlcjU5NTUwNjg=",
-//     "avatar_url": "https://avatars.githubusercontent.com/u/5955068?v=4",
-//     "gravatar_id": "",
-//     "url": "https://api.github.com/users/fehaa",
-//     "html_url": "https://github.com/fehaa",
-//   },
-//   {
-//     "login": "jefflovis",
-//     "id": 78802209,
-//     "node_id": "MDQ6VXNlcjc4ODAyMjA5",
-//     "avatar_url": "https://avatars.githubusercontent.com/u/78802209?v=4",
-//     "gravatar_id": "",
-//     "url": "https://api.github.com/users/jefflovis",
-//     "html_url": "https://github.com/jefflovis",
-//   },
-//   {
-//     "login": "jasineri",
-//     "id": 17604010,
-//     "node_id": "MDQ6VXNlcjE3NjA0MDEw",
-//     "avatar_url": "https://avatars.githubusercontent.com/u/17604010?v=4",
-//     "gravatar_id": "",
-//     "url": "https://api.github.com/users/jasineri",
-//     "html_url": "https://github.com/jasineri",
-//   }
-// ]
-
-const repo = [
-  {
-    "name": "Boilerplate-React",
-    "full_name": "klynmax/Boilerplate-React",
-    "html_url": "https://github.com/klynmax/Boilerplate-React",
-    "created_at": "2022-02-11T01:27:52Z",
-    "clone_url": "https://github.com/klynmax/Boilerplate-React.git",
-    "language": "HTML",
-  },
-  {
-    "name": "Calculo-IMC-App",
-    "full_name": "klynmax/Calculo-IMC-App",
-    "html_url": "https://github.com/klynmax/Calculo-IMC-App",
-    "created_at": "2021-11-01T17:24:39Z",
-    "clone_url": "https://github.com/klynmax/Calculo-IMC-App.git",
-    "language": "JavaScript",
-  },
-  {
-    "name": "CursoInicianteReact",
-    "full_name": "klynmax/CursoInicianteReact",
-    "html_url": "https://github.com/klynmax/CursoInicianteReact",
-    "created_at": "2020-12-29T15:24:33Z",
-    "clone_url": "https://github.com/klynmax/CursoInicianteReact.git",
-    "language": "JavaScript",
-  }
-]
 
 export default function SwipeableTemporaryDrawer(props) {
 
@@ -164,7 +126,7 @@ export default function SwipeableTemporaryDrawer(props) {
     }
   },[userData])
 
-  // console.log('promisse', repository)
+  console.log('promisse', followers)
 
   const list = (anchor) => (
     <Box
@@ -178,7 +140,7 @@ export default function SwipeableTemporaryDrawer(props) {
           <Avatar sx={style.avatar} alt="Remy Sharp" src={userData && userData.avatar_url} />
           <Grid item>
             <Typography sx={style.title} ><b>{userData && userData.name}</b></Typography>
-            <Typography sx={style.subtitle} >{userData && userData.login}</Typography>
+            <Typography sx={style.font} >{userData && userData.login}</Typography>
           </Grid>
         </Stack>
       </Box>
@@ -188,7 +150,7 @@ export default function SwipeableTemporaryDrawer(props) {
       <Box display="flex" m={3}>
         <Grid container >
           <Typography sx={style.title} ><b>Repositorios publicos</b></Typography>
-            <Grid item xl={12} lg={12}>
+            <Grid  item xl={12} lg={12}>
               <DialogContent sx={style.dialog}>
                 <DialogContentText
                   id="scroll-dialog-description"
@@ -198,33 +160,110 @@ export default function SwipeableTemporaryDrawer(props) {
                 >
                   {
                     repository && repository.map((item, index) => (
-                      <div style={{width: "100%"}}>
-                        <Box display="flex" m={2} >
-                          <Grid item lg={2} >
-                            <BookOutlinedIcon />
-                          </Grid>
+                      <Box display="flex" m={1} style={style.box} >
+                        <Box display="flex" m={3} sx={{ flexGrow: 1 }}>
                           <Grid item sx={{ flexGrow: 1 }}>
                             <Typography sx={style.titleListRepo} >{item.name}</Typography>
-                            <Typography sx={style.subtitle} >{item.full_name}</Typography>
-                            <Typography sx={style.subtitle} >Data de Criação: 01/02/2022</Typography>
-                            <Typography sx={style.subtitle} > {bullRGB}{item.language}</Typography>
+                            <Typography sx={style.font} >{item.full_name}</Typography>
+                            <Typography sx={style.font} >Data de Criação: 01/02/2022</Typography>
+                            {
+                              item.language == 'Java' && (
+                                <Box display="flex" sx={{marginTop: 5}}>
+                                  <DiJava style={style.icon} />
+                                  <Typography sx={style.subtitle} >{item.language}</Typography>
+                                </Box>
+                              )
+                            }
+                            {
+                              item.language == 'JavaScript' && (
+                                <Box display="flex" sx={{marginTop: 5}}>
+                                  <DiJsBadge style={{height: 20, width: 20}} />
+                                  <Typography sx={{fontSize: 16, marginLeft: 1}} >{item.language}</Typography>
+                                </Box>
+                              )
+                            }
+                            {
+                              item.language == 'Python' && (
+                                <Box display="flex" sx={{marginTop: 5}}>
+                                  <DiPython style={{height: 25, width: 25}} />
+                                  <Typography sx={{fontSize: 16, marginLeft: 1}} >{item.language}</Typography>
+                                </Box>
+                              )
+                            }
+                            {
+                              item.language == 'PHP' && (
+                                <Box display="flex" sx={{marginTop: 5}}>
+                                  <DiPhp style={{height: 25, width: 25}} />
+                                  <Typography sx={{fontSize: 16, marginLeft: 1}} >{item.language}</Typography>
+                                </Box>
+                              )
+                            }
+                            {
+                              item.language == 'TypeScript' && (
+                                <Box display="flex" sx={{marginTop: 5}}>
+                                  <SiTypescript style={{height: 20, width: 20}} />
+                                  <Typography sx={{fontSize: 16, marginLeft: 1}} >{item.language}</Typography>
+                                </Box>
+                              )
+                            }
+                            {
+                              item.language == 'Ruby' && (
+                                <Box display="flex" sx={{marginTop: 5}}>
+                                  <DiRuby style={{height: 20, width: 20}} />
+                                  <Typography sx={{fontSize: 16, marginLeft: 1}} >{item.language}</Typography>
+                                </Box>
+                              )
+                            }
+                            {
+                              item.language == 'HTML' && (
+                                <Box display="flex" sx={{marginTop: 5}}>
+                                  <AiFillHtml5 style={{height: 20, width: 20}} />
+                                  <Typography sx={{fontSize: 16, marginLeft: 1}} >{item.language}</Typography>
+                                </Box>
+                              )
+                            }
+                            {
+                              item.language == 'CSS' && (
+                                <Box display="flex" sx={{marginTop: 5}}>
+                                  <SiCsswizardry style={{height: 20, width: 20}} />
+                                  <Typography sx={{fontSize: 16, marginLeft: 1}} >{item.language}</Typography>
+                                </Box>
+                              )
+                            }
+                            {
+                              item.language == null && (
+                                <Box display="flex" sx={{marginTop: 5}}>
+                                  <AiOutlineFrown style={{height: 20, width: 20}} />
+                                  <Typography sx={{fontSize: 16, marginLeft: 1}} >Linguagem não definida</Typography>
+                                </Box>
+                              )
+                            }
+                            {
+                              item.language !== 'CSS' && item.language !== 'HTML' && item.language !== 'Ruby' &&
+                              item.language !== 'TypeScript' &&  item.language !== 'PHP' && item.language !== 'Python' &&
+                              item.language !== 'JavaScript' &&  item.language !== 'Java' ? (
+                                <Box display="flex" sx={{marginTop: 5}}>
+                                  <Typography sx={{fontSize: 16}} >{item.language}</Typography>
+                                </Box>
+                              )
+                              :
+                              ('')
+                            }
                           </Grid>
-                      
+                        
                           <Grid item lg={3} >
-                              <Button 
-                                variant="outlined"
-                                size="small"
-                                onClick={() => redirect(item.html_url)}
+                            <Button 
+                              variant="outlined"
+                              size="small"
+                              onClick={() => redirect(item.html_url)}
                                 startIcon={<BookOutlinedIcon />}
                                 sx={{width: 120}}
                               >
-                                  Acessar 
-                              </Button>
-                            </Grid>
-                            
+                                Acessar 
+                            </Button>
+                          </Grid>
                         </Box>
-                        <Divider />
-                      </div>
+                      </Box>
                     ))
                   }
                 </DialogContentText>
@@ -268,7 +307,7 @@ export default function SwipeableTemporaryDrawer(props) {
                               </Button>
                             </Grid>
                         </Box>
-                        <Divider />
+                        {/* <Divider /> */}
                       </div>
                     )))
                   }

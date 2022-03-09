@@ -36,9 +36,9 @@ export default function PermanentDrawerLeft(props) {
         }}
       >
         <Toolbar>
-          <Typography variant="h6" noWrap component="div">
+          {/* <Typography variant="h6" noWrap component="div">
             Permanent drawer
-          </Typography>
+          </Typography> */}
         </Toolbar>
       </AppBar>
       <Drawer
