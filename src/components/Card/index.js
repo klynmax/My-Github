@@ -22,6 +22,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Context from '../../Context/Context';
 import Dialog from '../../components/Dialog';
 import AlertSuccess from '../AlertSuccess';
+import DrawerRigth from '../DrawerRigth';
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -42,11 +43,18 @@ const styles = {
 
 export default function RecipeReviewCard(props) {
 
-  const {data} = props
+  const {data, click} = props
 
   const [expanded, setExpanded] = React.useState(false);
   const [openModal, setOpenModal] = React.useState(false);
-  const [success, setSuccess] = React.useState(false)
+  const [success, setSuccess] = React.useState(false);
+  const [userData, setUserData] = React.useState([])
+  const [openDrawer, setOpenDrawer] = React.useState({
+    top: false,
+    left: false,
+    bottom: false,
+    right: false,
+  })
 
   const { setData } = useContext(Context);
 
@@ -69,6 +77,21 @@ export default function RecipeReviewCard(props) {
   const redirect = (url) => {
     window.location.href = url
   }
+
+  const toggleDrawer = (anchor, open, data) => (event) => {
+    if (
+      event &&
+      event.type === 'keydown' &&
+      (event.key === 'Tab' || event.key === 'Shift')
+    ) {
+      return;
+    }
+
+    setOpenDrawer({ ...openDrawer, [anchor]: open });
+    setUserData(data)
+  };
+
+
 
   return (
     <Grid container>
@@ -164,12 +187,12 @@ export default function RecipeReviewCard(props) {
                   
                   <ExpandMore
                     expand={expanded}
-                    // onClick={handleExpandClick}
+                    onClick={toggleDrawer('right', true, item)}
                     aria-expanded={expanded}
                     aria-label="show more"
                   >
                     {/* <AddIcon /> */}
-                    <Typography sx={{fontSize: 12}}>Detalhes</Typography>
+                    <Typography sx={{fontSize: 12, color: "#42a5f5"}}>Detalhes</Typography>
                   </ExpandMore>
                 </CardActions>
                 </Card>
@@ -180,6 +203,7 @@ export default function RecipeReviewCard(props) {
                   remove={() => deleteById(item.id)}
                 />
             </Box>
+            
             ))
           }
         </Box>
@@ -187,6 +211,11 @@ export default function RecipeReviewCard(props) {
           openAlert={success}
           closeAlert={handleClose}
           text={"Usuário(a) removido com sussesso!"}
+        />
+        <DrawerRigth 
+          openDrawer={openDrawer}
+          closeDrawer={toggleDrawer('right', false)}
+          userData={userData}
         />
       </Grid>
     </Grid>

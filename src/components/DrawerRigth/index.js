@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
@@ -20,7 +21,7 @@ import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
 const style = {
   title: { fontSize: 18 },
   subtitle: {
-    fontSize: 12
+    fontSize: 13
   },
   avatar: {
     width: 60, 
@@ -37,7 +38,7 @@ const style = {
     color: 'red',
   },
   dialog: {
-    maxHeight: 200,
+    maxHeight: 240,
     '&::-webkit-scrollbar': {
       width: '0.4em',
     },
@@ -53,35 +54,35 @@ const style = {
   }
 }
 
-const data = [
-  {
-    "login": "fehaa",
-    "id": 5955068,
-    "node_id": "MDQ6VXNlcjU5NTUwNjg=",
-    "avatar_url": "https://avatars.githubusercontent.com/u/5955068?v=4",
-    "gravatar_id": "",
-    "url": "https://api.github.com/users/fehaa",
-    "html_url": "https://github.com/fehaa",
-  },
-  {
-    "login": "jefflovis",
-    "id": 78802209,
-    "node_id": "MDQ6VXNlcjc4ODAyMjA5",
-    "avatar_url": "https://avatars.githubusercontent.com/u/78802209?v=4",
-    "gravatar_id": "",
-    "url": "https://api.github.com/users/jefflovis",
-    "html_url": "https://github.com/jefflovis",
-  },
-  {
-    "login": "jasineri",
-    "id": 17604010,
-    "node_id": "MDQ6VXNlcjE3NjA0MDEw",
-    "avatar_url": "https://avatars.githubusercontent.com/u/17604010?v=4",
-    "gravatar_id": "",
-    "url": "https://api.github.com/users/jasineri",
-    "html_url": "https://github.com/jasineri",
-  }
-]
+// const data = [
+//   {
+//     "login": "fehaa",
+//     "id": 5955068,
+//     "node_id": "MDQ6VXNlcjU5NTUwNjg=",
+//     "avatar_url": "https://avatars.githubusercontent.com/u/5955068?v=4",
+//     "gravatar_id": "",
+//     "url": "https://api.github.com/users/fehaa",
+//     "html_url": "https://github.com/fehaa",
+//   },
+//   {
+//     "login": "jefflovis",
+//     "id": 78802209,
+//     "node_id": "MDQ6VXNlcjc4ODAyMjA5",
+//     "avatar_url": "https://avatars.githubusercontent.com/u/78802209?v=4",
+//     "gravatar_id": "",
+//     "url": "https://api.github.com/users/jefflovis",
+//     "html_url": "https://github.com/jefflovis",
+//   },
+//   {
+//     "login": "jasineri",
+//     "id": 17604010,
+//     "node_id": "MDQ6VXNlcjE3NjA0MDEw",
+//     "avatar_url": "https://avatars.githubusercontent.com/u/17604010?v=4",
+//     "gravatar_id": "",
+//     "url": "https://api.github.com/users/jasineri",
+//     "html_url": "https://github.com/jasineri",
+//   }
+// ]
 
 const repo = [
   {
@@ -110,7 +111,12 @@ const repo = [
   }
 ]
 
-export default function SwipeableTemporaryDrawer() {
+export default function SwipeableTemporaryDrawer(props) {
+
+  const {openDrawer, closeDrawer, userData} = props
+
+  const [followers, setFollowers] = React.useState([]);
+  const [repository, setRepository] = React.useState([]);
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -136,6 +142,30 @@ export default function SwipeableTemporaryDrawer() {
 
   const bullRGB = <span style={style.bullet}>•</span>;
 
+  React.useEffect(async () => {
+    const result = await fetch(`${userData.repos_url}`,
+    {
+      method: 'GET',
+    }
+    );
+    if(result.ok){
+      setRepository(await result.json([]))
+    }
+  },[userData])
+
+  React.useEffect(async () => {
+    const result = await fetch(`${userData.followers_url}`,
+    {
+      method: 'GET',
+    }
+    );
+    if(result.ok){
+      setFollowers(await result.json([]))
+    }
+  },[userData])
+
+  // console.log('promisse', repository)
+
   const list = (anchor) => (
     <Box
       sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 600 }}
@@ -145,10 +175,10 @@ export default function SwipeableTemporaryDrawer() {
     >
       <Box display="flex" m={3}>
         <Stack direction="row" spacing={2}>
-          <Avatar sx={style.avatar} alt="Remy Sharp" src="https://avatars.githubusercontent.com/u/52705719?v=4" />
+          <Avatar sx={style.avatar} alt="Remy Sharp" src={userData && userData.avatar_url} />
           <Grid item>
-            <Typography sx={style.title} ><b>Klynsman Lemos</b></Typography>
-            <Typography sx={style.subtitle} >Klynmax</Typography>
+            <Typography sx={style.title} ><b>{userData && userData.name}</b></Typography>
+            <Typography sx={style.subtitle} >{userData && userData.login}</Typography>
           </Grid>
         </Stack>
       </Box>
@@ -157,7 +187,7 @@ export default function SwipeableTemporaryDrawer() {
 
       <Box display="flex" m={3}>
         <Grid container >
-          <Typography sx={style.title} ><b>Meus repositorios publicos</b></Typography>
+          <Typography sx={style.title} ><b>Repositorios publicos</b></Typography>
             <Grid item xl={12} lg={12}>
               <DialogContent sx={style.dialog}>
                 <DialogContentText
@@ -167,7 +197,7 @@ export default function SwipeableTemporaryDrawer() {
                   //sx={{maxHeight: 100}}
                 >
                   {
-                    repo.map((item, index) => (
+                    repository && repository.map((item, index) => (
                       <div style={{width: "100%"}}>
                         <Box display="flex" m={2} >
                           <Grid item lg={2} >
@@ -175,9 +205,9 @@ export default function SwipeableTemporaryDrawer() {
                           </Grid>
                           <Grid item sx={{ flexGrow: 1 }}>
                             <Typography sx={style.titleListRepo} >{item.name}</Typography>
-                            <Typography /*sx={style.subtitle}*/ >{item.full_name}</Typography>
-                            <Typography /*sx={style.subtitle}*/ >Data de Criação: 01/02/2022</Typography>
-                            <Typography /*sx={style.subtitle}*/ > {bullRGB}{item.language}</Typography>
+                            <Typography sx={style.subtitle} >{item.full_name}</Typography>
+                            <Typography sx={style.subtitle} >Data de Criação: 01/02/2022</Typography>
+                            <Typography sx={style.subtitle} > {bullRGB}{item.language}</Typography>
                           </Grid>
                       
                           <Grid item lg={3} >
@@ -207,7 +237,7 @@ export default function SwipeableTemporaryDrawer() {
 
       <Box display="flex" m={3}>
         <Grid container >
-          <Typography sx={style.title} ><b>Meus seguidores</b></Typography>
+          <Typography sx={style.title} ><b>Seguidores</b></Typography>
             <Grid item xl={12} lg={12}>
               <DialogContent sx={style.dialog}>
                 <DialogContentText
@@ -217,11 +247,11 @@ export default function SwipeableTemporaryDrawer() {
                   //sx={{maxHeight: 100}}
                 >
                   {
-                    data.map((item, index) => (
+                    followers && (followers?.map((item, index) => (
                       <div style={{width: "100%"}}>
                         <Box display="flex" m={2}>
                           <Stack direction="row" spacing={4} sx={{ flexGrow: 1 }}>
-                            <Avatar sx={{width: 40, height: 40}} alt="Remy Sharp" src={item.avatar_url}/>
+                            <Avatar sx={{width: 40, height: 40}} alt="Remy Sharp" src={item && item.avatar_url}/>
                             <Grid item>
                               <Typography sx={style.title} >{item.login}</Typography>
                             </Grid>
@@ -234,13 +264,13 @@ export default function SwipeableTemporaryDrawer() {
                                 startIcon={<PersonOutlinedIcon />}
                                 sx={{width: 120}}
                               >
-                                  Ver perfil
+                                  Visualizar
                               </Button>
                             </Grid>
                         </Box>
                         <Divider />
                       </div>
-                    ))
+                    )))
                   }
                 </DialogContentText>
               </DialogContent>
@@ -255,12 +285,12 @@ export default function SwipeableTemporaryDrawer() {
     <div>
       {['left', 'right', 'top', 'bottom'].map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
+          {/* <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button> */}
           <SwipeableDrawer
-            anchor={anchor}
-            open={state[anchor]}
-            onClose={toggleDrawer(anchor, false)}
-            onOpen={toggleDrawer(anchor, true)}
+            anchor={'right'}
+            open={openDrawer[anchor]}
+            onClose={closeDrawer}
+            // onOpen={toggleDrawer(anchor, true)}
           >
             {list(anchor)}
           </SwipeableDrawer>
