@@ -64,57 +64,57 @@ function Users() {
                     <Grid item lg={10} sx={{marginTop: 1}}>
                         <FieldSearch />
                     </Grid>
-                <Grid item lg={2} >
-                    {   list === true ? (
-                        <>
-                            <IconButton>
-                                <GridViewRoundedIcon 
-                                    sx={styles.iconActive}
-                                />
-                            </IconButton>
-                            <IconButton>
-                                <DensityMediumOutlinedIcon 
-                                    onClick={() => setList(false)}
-                                    sx={styles.iconDisabled} 
-                                    />
-                            </IconButton>
-                        </>
-                        )
-                        :
-                        (
+                    <Grid item lg={2} >
+                        {   list === true ? (
                             <>
                                 <IconButton>
-                                    <GridViewOutlinedIcon 
-                                        sx={styles.iconDisabled}  
-                                        onClick={() => setList(true)}
-                                    />
-                                </IconButton>
-
-                                <IconButton>
-                                    <TableRowsRoundedIcon 
+                                    <GridViewRoundedIcon 
                                         sx={styles.iconActive}
                                     />
                                 </IconButton>
+                                <IconButton>
+                                    <DensityMediumOutlinedIcon 
+                                        onClick={() => setList(false)}
+                                        sx={styles.iconDisabled} 
+                                        />
+                                </IconButton>
                             </>
-                            
-                        )
-                    }
+                            )
+                            :
+                            (
+                                <>
+                                    <IconButton>
+                                        <GridViewOutlinedIcon 
+                                            sx={styles.iconDisabled}  
+                                            onClick={() => setList(true)}
+                                        />
+                                    </IconButton>
+
+                                    <IconButton>
+                                        <TableRowsRoundedIcon 
+                                            sx={styles.iconActive}
+                                        />
+                                    </IconButton>
+                                </>
+                                
+                            )
+                        }
+                    </Grid>
                 </Grid>
-            </Grid>
-            <Grid container spacing={10}>
-                <Grid item lg={12}>
-                    {
-                        list === true ? (
-                            <Card data={data} />
-                        )
-                        :
-                        (
-                            <div style={{marginTop: 40}}>
-                                <Table data={data} />
-                            </div>
-                        )
-                    }
-                </Grid>
+                <Grid container spacing={10}>
+                    <Grid item lg={12}>
+                        {
+                            list === true ? (
+                                <Card data={data} />
+                            )
+                            :
+                            (
+                                <div style={{marginTop: 40}}>
+                                    <Table data={data} />
+                                </div>
+                            )
+                        }
+                    </Grid>
                 </Grid>
             </Grid>
         </Container>

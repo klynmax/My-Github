@@ -111,7 +111,7 @@ export default function PermanentDrawerLeft(props) {
             </ListItem>
           </Link>
 
-          <Link to="/Users" style={{textDecoration: 'none'}} >
+          <Link to="/Repository" style={{textDecoration: 'none'}} >
             <ListItem button>
               <BookIcon sx={{color: "#000000"}} />
               <Typography 
