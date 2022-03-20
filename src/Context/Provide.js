@@ -3,13 +3,15 @@ import Context from "./Context";
 
 const Provider = ({ children }) => {
 
-    const [data, setData] = React.useState('')
+    const [data, setData] = React.useState('');
+    const [repositoryData, setRepositoryData] = React.useState('');
     return(
         <Context.Provider 
             value={{
-                // data: 'Home',
+                data,
                 setData,
-                data
+                repositoryData,
+                setRepositoryData
             }}
         >
             {children}

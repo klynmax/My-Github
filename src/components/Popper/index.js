@@ -24,7 +24,13 @@ export default function SimplePopper(props) {
 
   return (
     <div>
-      <Button variant="contained" aria-describedby={id} type="button" onClick={handleClick}>
+      <Button 
+        variant="outlined" 
+        aria-describedby={id} 
+        type="button" 
+        startIcon={<VscRepoClone />}
+        onClick={handleClick}
+      >
         Clone
       </Button>
       <Popper id={id} open={open} anchorEl={anchorEl} placement="bottom-end">
