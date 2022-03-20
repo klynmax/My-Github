@@ -13,6 +13,8 @@ import { Grid } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import BookIcon from '@mui/icons-material/Book';
+import { useLocation } from "react-router-dom";
+import Container from '@mui/material/Container';
 
 import Logo from '../../assets/image/GitHub-Logo.png';
 
@@ -23,6 +25,8 @@ import {
 const drawerWidth = 240;
 
 export default function PermanentDrawerLeft(props) {
+
+  const location = useLocation()
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -36,9 +40,39 @@ export default function PermanentDrawerLeft(props) {
         }}
       >
         <Toolbar>
-          {/* <Typography variant="h6" noWrap component="div">
-            Permanent drawer
-          </Typography> */}
+          <Container fixed>
+            <Grid
+              container
+              direction="row"
+              justifyContent="flex-start"
+              alignItems="center"
+              xl={12}
+            >
+              <Grid item lg={12}>
+                {
+                  location.pathname === "/Repository" && (
+                    <Typography variant="h6" noWrap component="div">
+                      Repositorios
+                    </Typography>
+                  )
+                }
+                {
+                  location.pathname === "/Users" && (
+                    <Typography variant="h6" noWrap component="div">
+                      Usuários
+                    </Typography>
+                  )
+                }
+                {
+                  location.pathname === "/Dashboard" && (
+                    <Typography variant="h6" noWrap component="div">
+                      Dashboard
+                    </Typography>
+                  )
+                }
+              </Grid>
+            </Grid>
+          </Container>
         </Toolbar>
       </AppBar>
       <Drawer

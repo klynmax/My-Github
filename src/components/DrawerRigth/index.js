@@ -23,6 +23,9 @@ import { SiTypescript, SiCsswizardry } from "react-icons/si";
 import { AiFillHtml5, AiOutlineFrown } from "react-icons/ai";
 import { BsFillEmojiFrownFill } from "react-icons/bs";
 
+import Poper from '../Popper';
+import RepositoryList from '../RepositoryList'
+
 
 const style = {
   title: { fontSize: 18 },
@@ -39,7 +42,8 @@ const style = {
   },
   titleListRepo: {
     fontSize: 18,
-    color: '#42a5f5'
+    color: '#42a5f5',
+    cursor: 'pointer'
   },
   bullet: {
     display: 'inline-block',
@@ -126,6 +130,10 @@ export default function SwipeableTemporaryDrawer(props) {
     }
   },[userData])
 
+  const [x,setX] = React.useState('')
+
+  console.log('111', x)
+
   const list = (anchor) => (
     <Box
       sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 600 }}
@@ -158,13 +166,18 @@ export default function SwipeableTemporaryDrawer(props) {
                 >
                   {
                     repository && repository.map((item, index) => (
-                      <Box display="flex" m={1} style={style.box} >
+                      <Box display="flex" m={1} style={style.box} key={index}>
                         <Box display="flex" m={3} sx={{ flexGrow: 1 }}>
                           <Grid item sx={{ flexGrow: 1 }}>
-                            <Typography sx={style.titleListRepo} >{item.name}</Typography>
+                            <Typography 
+                              sx={style.titleListRepo} 
+                              onClick={() => redirect(item.html_url)}
+                            >
+                              {item.name}
+                            </Typography>
                             <Typography sx={style.font} >{item.full_name}</Typography>
                             <Typography sx={style.font} >Data de Criação: 01/02/2022</Typography>
-                            {
+                            {/* {
                               item.language == 'Java' && (
                                 <Box display="flex" sx={{marginTop: 5}}>
                                   <DiJava style={style.icon} />
@@ -246,11 +259,11 @@ export default function SwipeableTemporaryDrawer(props) {
                               )
                               :
                               ('')
-                            }
+                            } */}
                           </Grid>
                         
-                          <Grid item lg={3} >
-                            <Button 
+                          <Grid item lg={3} /*onClick={() => setX(item.full_name)}*/>
+                            {/* <Button 
                               variant="outlined"
                               size="small"
                               onClick={() => redirect(item.html_url)}
@@ -258,7 +271,90 @@ export default function SwipeableTemporaryDrawer(props) {
                                 sx={{width: 120}}
                               >
                                 Acessar 
-                            </Button>
+                            </Button> */}
+                            {
+                              item.language == 'Java' && (
+                                <Box display="flex" >
+                                  <DiJava style={style.icon} />
+                                  <Typography sx={style.subtitle} >{item.language}</Typography>
+                                </Box>
+                              )
+                            }
+                            {
+                              item.language == 'JavaScript' && (
+                                <Box display="flex" >
+                                  <DiJsBadge style={{height: 20, width: 20}} />
+                                  <Typography sx={{fontSize: 16, marginLeft: 1}} >{item.language}</Typography>
+                                </Box>
+                              )
+                            }
+                            {
+                              item.language == 'Python' && (
+                                <Box display="flex" >
+                                  <DiPython style={{height: 25, width: 25}} />
+                                  <Typography sx={{fontSize: 16, marginLeft: 1}} >{item.language}</Typography>
+                                </Box>
+                              )
+                            }
+                            {
+                              item.language == 'PHP' && (
+                                <Box display="flex" >
+                                  <DiPhp style={{height: 25, width: 25}} />
+                                  <Typography sx={{fontSize: 16, marginLeft: 1}} >{item.language}</Typography>
+                                </Box>
+                              )
+                            }
+                            {
+                              item.language == 'TypeScript' && (
+                                <Box display="flex" >
+                                  <SiTypescript style={{height: 20, width: 20}} />
+                                  <Typography sx={{fontSize: 16, marginLeft: 1}} >{item.language}</Typography>
+                                </Box>
+                              )
+                            }
+                            {
+                              item.language == 'Ruby' && (
+                                <Box display="flex" >
+                                  <DiRuby style={{height: 20, width: 20}} />
+                                  <Typography sx={{fontSize: 16, marginLeft: 1}} >{item.language}</Typography>
+                                </Box>
+                              )
+                            }
+                            {
+                              item.language == 'HTML' && (
+                                <Box display="flex" >
+                                  <AiFillHtml5 style={{height: 20, width: 20}} />
+                                  <Typography sx={{fontSize: 16, marginLeft: 1}} >{item.language}</Typography>
+                                </Box>
+                              )
+                            }
+                            {
+                              item.language == 'CSS' && (
+                                <Box display="flex" >
+                                  <SiCsswizardry style={{height: 20, width: 20}} />
+                                  <Typography sx={{fontSize: 16, marginLeft: 1}} >{item.language}</Typography>
+                                </Box>
+                              )
+                            }
+                            {
+                              item.language == null && (
+                                <Box display="flex" >
+                                  <AiOutlineFrown style={{height: 20, width: 20}} />
+                                  <Typography sx={{fontSize: 16, marginLeft: 1}} >Linguagem não definida</Typography>
+                                </Box>
+                              )
+                            }
+                            {
+                              item.language !== 'CSS' && item.language !== 'HTML' && item.language !== 'Ruby' &&
+                              item.language !== 'TypeScript' &&  item.language !== 'PHP' && item.language !== 'Python' &&
+                              item.language !== 'JavaScript' &&  item.language !== 'Java' ? (
+                                <Box display="flex" >
+                                  <Typography sx={{fontSize: 16}} >{item.language}</Typography>
+                                </Box>
+                              )
+                              :
+                              ('')
+                            }
                           </Grid>
                         </Box>
                       </Box>

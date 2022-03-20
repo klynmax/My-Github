@@ -73,12 +73,18 @@ export default function RecipeReviewCard(props) {
     bottom: false,
     right: false,
   })
+  const [id, setId] = React.useState('');
 
   const { setData } = useContext(Context);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+
+  const modal = (id) => {
+    setId(id);
+    setOpenModal(true)
+  }
 
   const deleteById = (id) => {
     const repositories = data.filter((item) => item.id !== id);
@@ -198,7 +204,7 @@ export default function RecipeReviewCard(props) {
                   <IconButton aria-label="add to favorites">
                     <BiLike style={styles.iconsFooter} />
                   </IconButton>
-                  <IconButton aria-label="share" onClick={() => setOpenModal(true)}>
+                  <IconButton aria-label="share" onClick={() => modal(item.id)}>
                     <FiTrash style={styles.iconsFooter} />
                   </IconButton>
                   
@@ -213,17 +219,16 @@ export default function RecipeReviewCard(props) {
                   </ExpandMore>
                 </CardActions>
                 </Card>
-
-                <Dialog  
-                  open={openModal}  
-                  close={() => setOpenModal(false)} 
-                  remove={() => deleteById(item.id)}
-                />
             </Box>
             
             ))
           }
         </Box>
+        <Dialog  
+          open={openModal}  
+          close={() => setOpenModal(false)} 
+          remove={() => deleteById(id)}
+        />
         <AlertSuccess 
           openAlert={success}
           closeAlert={handleClose}

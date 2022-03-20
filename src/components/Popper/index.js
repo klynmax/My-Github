@@ -4,10 +4,13 @@ import Popper from "@mui/material/Popper";
 import Button from "@mui/material/Button";
 import { Typography } from "@mui/material";
 import { VscRepoClone } from "react-icons/vsc";
+import ArrowDropDownOutlinedIcon from '@mui/icons-material/ArrowDropDownOutlined';
+import ArrowLeftOutlinedIcon from '@mui/icons-material/ArrowLeftOutlined';
 
 import classes from "./style.module.css";
 import CopyText from "../CopyText";
 import AlertSuccess from '../AlertSuccess';
+import { BorderColor } from "@mui/icons-material";
 
 export default function SimplePopper(props) {
     
@@ -19,6 +22,8 @@ export default function SimplePopper(props) {
     setAnchorEl(anchorEl ? null : event.currentTarget);
   };
 
+  console.log('123', value)
+
   const open = Boolean(anchorEl);
   const id = open ? "simple-popper" : undefined;
 
@@ -29,6 +34,7 @@ export default function SimplePopper(props) {
         aria-describedby={id} 
         type="button" 
         startIcon={<VscRepoClone />}
+        // endIcon={<ArrowDropDownOutlinedIcon />}
         onClick={handleClick}
       >
         Clone
@@ -37,10 +43,11 @@ export default function SimplePopper(props) {
         <div className={classes.balao2} >
             <Box m={1}>
                 <Box display="flex">
-                    <VscRepoClone style={{width: 22, height: 22}} />
-                    <Typography sx={{fontSize: 12}}> &nbsp; &nbsp; <b>HTTPS:</b> </Typography>
+                    {/* <VscRepoClone style={{width: 18, height: 18}} /> */}
+                    <Typography sx={{fontSize: 11}}> &nbsp; &nbsp; <b>HTTPS:</b> </Typography>
+                    <CopyText data={value} />
                 </Box>
-             <CopyText data={value} />
+             {/* <CopyText data={value} /> */}
             </Box>
             <AlertSuccess />
         </div>

@@ -4,28 +4,46 @@
     border-style: solid;
     border-width: 1px;
     border-color: #c0c0c0;
-    width: 330px;
-    height: 100px;
+    width: 365px;
+    height: 65px;
   
     position: relative;
-    margin-top: 15px;
+    margin-top: -50px;
+    right: 35%;
   }
   .balao2:after {
-    content: "";
+    /* content: "";
   
     width: 0;
     height: 0;
   
     position: absolute;
-  
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
+    
+    
+    /* border-left: 10px solid transparent;
     border-bottom: 10px solid #c0c0c0;
+    border-right: 10px solid transparent; */
+    
+    content: "";
+
+    width: 0; 
+    height: 0;
+
+    position: absolute;
+
+    right: -10px;
+    
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 10px solid #c0c0c0;
+    
 
   
     /*background: #fff;*/
   
-    bottom: 100px;
-    left: 90%;
+    bottom: 20px;
+    /*left: 80%;*/
   }
+
+
   

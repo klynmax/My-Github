@@ -79,7 +79,6 @@ export default function StickyHeadTable(props) {
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row) => {
                 return (
-                  <>
                   <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
                     <TableCell align="center" >
                       <Avatar alt="Remy Sharp" src={row.owner.avatar_url} />
@@ -98,12 +97,6 @@ export default function StickyHeadTable(props) {
                     
                     </TableCell>
                   </TableRow>
-                  <Dialog  
-                    open={openModal}  
-                    close={() => setOpenModal(false)} 
-                    remove={() => deleteById()}
-                  />
-                  </>
                 );
               })}
           </TableBody>
@@ -117,6 +110,14 @@ export default function StickyHeadTable(props) {
         page={page}
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
+        labelRowsPerPage={"Linhas por páginas"}
+        labelDisplayedRows={({ from, to, count }) => `Exibindo linhas ${from}-${to} do total de ${count}`}
+      />
+
+      <Dialog  
+        open={openModal}  
+        close={() => setOpenModal(false)} 
+        remove={() => deleteById()}
       />
 
       <AlertSuccess 

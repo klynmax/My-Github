@@ -16,6 +16,7 @@ import FieldSearch from '../../components/FieldSearch';
 import Card from '../../components/Card';
 import Table from '../../components/Table';
 import Context from '../../Context/Context';
+import DialogNew from '../../components/DialogNew';
 import DrawerRigth from '../../components/DrawerRigth';
 
 const styles = {
@@ -37,7 +38,7 @@ function Users() {
     const { data, setData } = useContext(Context);
 
     useEffect(() => {
-        setData(repo)
+        setData(repo.reverse())
     }, [])
 
     const [list, setList] = useState(true)
@@ -53,16 +54,9 @@ function Users() {
                 alignItems="center"
                 xl={12}
             >
-                <Grid item lg={12}>
-                    <Typography
-                        sx={{
-                            fontSize: 12,
-                        }}
-                    ><b>Pesquisar usuários:</b></Typography>
-                </Grid>           
                 <Grid container spacing={14}>
                     <Grid item lg={10} sx={{marginTop: 1}}>
-                        <FieldSearch />
+                        <DialogNew buttonName="Novo usuário" />
                     </Grid>
                     <Grid item lg={2} >
                         {   list === true ? (

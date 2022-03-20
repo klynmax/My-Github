@@ -53,7 +53,7 @@ export default function CopyText(props) {
             id="text"
             value={data}
             // onChange={handleChange('weight')}
-            sx={{ height: 40, fontSize: 10, backgroundColor: "#fff" }}
+            sx={{ height: 32, fontSize: 10, backgroundColor: "#fff" }}
             endAdornment={
               <>
                 <Divider orientation="vertical" flexItem />

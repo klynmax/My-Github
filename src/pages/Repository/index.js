@@ -15,8 +15,6 @@ function Repository() {
         setRepositoryData(repositoryList.reverse())
     }, [])
 
-    console.log("123", repositoryData)
-
     return(
         <Container fixed>
             <Grid
@@ -27,7 +25,7 @@ function Repository() {
                 xl={12}
             >
                 <Grid item lg={12}>
-                    <DialogNew />
+                    <DialogNew buttonName="Novo reposiório" />
                 </Grid>
                 <Grid item lg={12}>
                     <div style={{marginTop: 40}}>

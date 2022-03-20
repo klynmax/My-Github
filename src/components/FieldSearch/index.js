@@ -8,6 +8,7 @@ import Snackbar from '@mui/material/Snackbar';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import Divider from "@mui/material/Divider";
 import { useLocation } from "react-router-dom";
+import Button from '@mui/material/Button';
 
 import Context from '../../Context/Context';
 import AlertSuccess from '../AlertSuccess';
@@ -30,7 +31,6 @@ export default function InputAdornments(props) {
   const [success, setSuccess] = React.useState(false)
   const [erro, setErro] = React.useState(false);
 
-  console.log('12', location.pathname)
 
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
@@ -59,7 +59,7 @@ export default function InputAdornments(props) {
             res
           ])
         )
-        setData(JSON.parse(localStorage.getItem('repository')))
+        setData(JSON.parse(localStorage.getItem('repository')).reverse())
       }
       setSuccess(true)
     } else {
@@ -101,58 +101,84 @@ export default function InputAdornments(props) {
         <FormControl variant="outlined">
           {
             location.pathname === "/Repository" && (
-              <OutlinedInput
-                id="outlined-adornment-weight"
-                value={values.weight}
-                onChange={handleChange('weight')}
-                endAdornment={
-                  <>
-                  <Divider orientation="vertical" flexItem />
-                  <AddOutlinedIcon 
+              <Box display="flex">
+                <OutlinedInput
+                  id="outlined-adornment-weight"
+                  value={values.weight}
+                  onChange={handleChange('weight')}
+                  // endAdornment={
+                  //   <>
+                  //   <Divider orientation="vertical" flexItem />
+                  //   <AddOutlinedIcon 
+                  //     onClick={saveRepository} 
+                  //     sx={{
+                  //       cursor: 'pointer',
+                  //       marginLeft: '5%'
+                  //     }}
+                  //   />
+                  //   </>
+                  // }
+                  aria-describedby="outlined-weight-helper-text"
+                  inputProps={{
+                    'aria-label': 'weight',
+                  }}
+                  placeholder={placeholder}
+                  sx={{
+                    height: 32,
+                    width: 380
+                  }}
+                />
+                <Button
+                  variant="contained" 
+                  sx={{
+                    marginLeft: 2, 
+                    height: 32,
+                    fontSize: 12
+                  }}
                     onClick={saveRepository} 
-                    sx={{
-                      cursor: 'pointer',
-                      marginLeft: '5%'
-                    }}
-                  />
-                  </>
-                }
-                aria-describedby="outlined-weight-helper-text"
-                inputProps={{
-                  'aria-label': 'weight',
-                }}
-                placeholder={placeholder}
-                sx={{
-                  height: 32,
-                  width: 380
-                }}
-              />
+                  >
+                    Cadastrar
+                </Button>
+              </Box>
             )
           }
           {
             location.pathname === "/Users" && (
-              <OutlinedInput
-                id="outlined-adornment-weight"
-                value={values.weight}
-                onChange={handleChange('weight')}
-                endAdornment={
-                    <SearchIcon 
-                        onClick={saveUser} 
-                        sx={{
-                          cursor: 'pointer',
-                        }}
-                    />
-                }
-                aria-describedby="outlined-weight-helper-text"
-                inputProps={{
-                  'aria-label': 'weight',
-                }}
-                placeholder={placeholder}
-                sx={{
-                  height: 32,
-                  width: 380
-                }}
-              />
+              <Box display="flex">
+                <OutlinedInput
+                  id="outlined-adornment-weight"
+                  value={values.weight}
+                  onChange={handleChange('weight')}
+                  // endAdornment={
+                  //     <SearchIcon 
+                  //         onClick={saveUser} 
+                  //         sx={{
+                  //           cursor: 'pointer',
+                  //         }}
+                  //     />
+                  // }
+                  aria-describedby="outlined-weight-helper-text"
+                  inputProps={{
+                    'aria-label': 'weight',
+                  }}
+                  placeholder={placeholder}
+                  sx={{
+                    height: 32,
+                    width: 380
+                  }}
+                />
+                <Button
+                  variant="contained" 
+                  sx={{
+                    marginLeft: 2, 
+                    height: 32,
+                    fontSize: 12
+                  }}
+                  onClick={saveUser} 
+                >
+                  Cadastrar
+                </Button>
+              </Box>
             )
           }
         </FormControl>
