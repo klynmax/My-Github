@@ -61,7 +61,7 @@ const styles = {
 
 export default function RecipeReviewCard(props) {
 
-  const {data, click} = props
+  const {dataCard, click} = props
 
   const [expanded, setExpanded] = React.useState(false);
   const [openModal, setOpenModal] = React.useState(false);
@@ -87,7 +87,7 @@ export default function RecipeReviewCard(props) {
   }
 
   const deleteById = (id) => {
-    const repositories = data.filter((item) => item.id !== id);
+    const repositories = dataCard.filter((item) => item.id !== id);
     localStorage.setItem('repository', JSON.stringify(repositories));
     setData(repositories)
     setOpenModal(false)
@@ -124,7 +124,7 @@ export default function RecipeReviewCard(props) {
           display="flex"
           flexWrap="wrap"
         >
-          { data && data.map((item, index) => (
+          { dataCard && dataCard.map((item, index) => (
             <Box key={index} mx={1.1} sx={{ width: 365, marginTop: 5 }}>
               <Card >
                 <CardHeader

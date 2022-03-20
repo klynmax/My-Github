@@ -34,7 +34,6 @@ const styles = {
 function Users() {
 
     const repo = JSON.parse(localStorage.getItem('repository'));
-
     const { data, setData } = useContext(Context);
 
     useEffect(() => {
@@ -42,8 +41,6 @@ function Users() {
     }, [])
 
     const [list, setList] = useState(true)
-
-    // console.log('123', data.reverse())
 
     return(
         <Container fixed>
@@ -99,7 +96,7 @@ function Users() {
                     <Grid item lg={12}>
                         {
                             list === true ? (
-                                <Card data={data} />
+                                <Card dataCard={data} />
                             )
                             :
                             (
