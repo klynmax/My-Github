@@ -9,6 +9,7 @@ import Context from "../../Context/Context";
 import CardsDash from '../../components/CardsDash';
 import PieGraphic from '../../components/PieGraphic';
 import Ranking from "../../components/Ranking";
+import LineCharts from "../../components/LineCharts";
 
 function Home() {
     // const { data } = useContext(Context);
@@ -97,11 +98,23 @@ function Home() {
                 sx={{marginTop: 5}}
             >
                 <Grid item lg>
-                <PieGraphic data={allLanguage} value={total} />
+                    <PieGraphic data={allLanguage} value={total} />
                 </Grid>
                 <Grid item lg>
-                <Ranking />
+                    <Ranking />
                 </Grid>
+            </Grid>
+            <Grid
+            // item
+                container
+                direction="row"
+                justifyContent="flex-start"
+                alignItems="center"
+                xl={12}
+                lg={12}
+                sx={{marginTop: 5}}
+            >
+                <LineCharts />
             </Grid>
         </Container>
     )

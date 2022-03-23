@@ -29,7 +29,8 @@ const style = {
         height: 25,
         width: 25,
         marginRight: 20,
-        color: '#AAB0BD',
+        // color: '#AAB0BD',
+        color: '#4caf50'
     },
     textPie: {
         width: 34,
