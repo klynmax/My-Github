@@ -5,6 +5,8 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import { FaUserFriends } from "react-icons/fa";
+import { RiGitRepositoryFill } from "react-icons/ri";
 
 const style = {
   root: {
@@ -23,7 +25,8 @@ const style = {
   },
   titleStyle: {
     fontSize: 16,
-    whiteSpace: 'nowrap'
+    whiteSpace: 'nowrap',
+    color: '#AAB0BD',
   },
   number: {
     fontSize: 22,
@@ -99,7 +102,28 @@ export default function ImgMediaCard(props) {
                         lg={2}
                     >
                         <Box m={3}>
-                        <PersonOutlineOutlinedIcon />
+                            {
+                                title === 'Usuários' && (
+                                    <FaUserFriends 
+                                        style={{
+                                            height: 30,
+                                            width: 30,
+                                            color: '#42a5f5'
+                                        }} 
+                                    />
+                                )
+                            }
+                            {
+                                title === 'Repositórios' && (
+                                    <RiGitRepositoryFill 
+                                        style={{
+                                            height: 30,
+                                            width: 30,
+                                            color: '#ba68c8'
+                                        }} 
+                                    />
+                                )
+                            }
                         </Box>
                         {/* <PersonOutlineOutlinedIcon /> */}
                     </Grid>

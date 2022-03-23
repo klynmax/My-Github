@@ -130,9 +130,6 @@ export default function SwipeableTemporaryDrawer(props) {
     }
   },[userData])
 
-  const [x,setX] = React.useState('')
-
-  console.log('111', x)
 
   const list = (anchor) => (
     <Box

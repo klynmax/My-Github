@@ -1,4 +1,5 @@
-import React, { useContext } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useContext, useEffect, useState } from "react";
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -6,13 +7,49 @@ import Box from '@mui/material/Box';
 
 import Context from "../../Context/Context";
 import CardsDash from '../../components/CardsDash';
+import PieGraphic from '../../components/PieGraphic';
+import Ranking from "../../components/Ranking";
 
 function Home() {
-    const { data } = useContext(Context);
+    // const { data } = useContext(Context);
+    const users = JSON.parse(localStorage.getItem('repository'));
+    const repository = JSON.parse(localStorage.getItem('myRepository'));
+    const [userData, setUserData] = useState('');
+    const [repositoryData, setRepositoryData] = useState('');
+    const [allLanguage, setAllLanguage] = useState('');
+    const [total, setTotal] = useState('');
 
-    console.log('123', data)
-    
-    /* data && data.name => verificar se ele existe */
+    useEffect(() => {
+        setUserData(users);
+        setRepositoryData(repository)
+    }, [])
+
+    const language = repositoryData && repositoryData?.map(function(item) {
+        return item.language
+    })
+
+    useEffect(() => {
+        language && language.reduce(function(obj, lang, total){
+            if(!obj[lang]){
+                obj[lang] = 1;
+            } else {
+                obj[lang]++;
+            }
+            setAllLanguage(obj);
+            setTotal(total)
+            return obj
+        }, {})
+    }, [repositoryData])
+
+    // const myLang = language && language.reduce(function(obj, lang, x, y){
+    //     if(!obj[lang]){
+    //         obj[lang] = 1;
+    //     } else {
+    //         obj[lang]++;
+    //     }
+    //     return obj
+    // }, {})
+
     return(
         <Container fixed>
             <Grid
@@ -27,26 +64,43 @@ function Home() {
                 <Grid item lg>
                     <CardsDash 
                         title="Usuários"
-                        number="5"
+                        number={userData.length}
                     />
                 </Grid>
                 <Grid item lg>
                     <CardsDash 
                         title="Repositórios"
-                        number="12"
+                        number={repositoryData.length}
                     />
                 </Grid>
                 <Grid item lg>
                     <CardsDash 
                         title="Linguagens"
-                        number="6"
+                        number={total}
                     />
                 </Grid>
                 <Grid item lg>
                     <CardsDash 
-                        title="teste"
+                        title="Favoritos"
                         number="12"
                     />
+                </Grid>
+            </Grid>
+            <Grid
+            // item
+                container
+                direction="row"
+                justifyContent="flex-start"
+                alignItems="center"
+                xl={12}
+                lg={12}
+                sx={{marginTop: 5}}
+            >
+                <Grid item lg>
+                <PieGraphic data={allLanguage} value={total} />
+                </Grid>
+                <Grid item lg>
+                <Ranking />
                 </Grid>
             </Grid>
         </Container>
