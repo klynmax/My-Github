@@ -16,6 +16,7 @@ import Divider from '@mui/material/Divider';
 import { FiUserPlus, FiUserCheck, FiTrash } from "react-icons/fi";
 import { GoRepo } from "react-icons/go";
 import { BiLike } from "react-icons/bi";
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 
 import Context from '../../Context/Context';
 import Dialog from '../../components/Dialog';
@@ -56,6 +57,11 @@ const styles = {
     width: 20,
     height: 20,
     color: '#000000'
+   },
+   favorite: {
+    width: 20,
+    height: 20,
+    color: '#FF0000'
    }
 };
 
@@ -114,8 +120,22 @@ export default function RecipeReviewCard(props) {
     setOpenDrawer({ ...openDrawer, [anchor]: open });
     setUserData(data)
   };
+  
+  const handleLike= (id) => {
+    const like = dataCard.map(repo => {
+      return repo.id === id ? { ...repo, favorite: true } : repo
+    })
+    localStorage.setItem('repository', JSON.stringify(like));
+    setData(like)
+  }
 
-
+  const handleDeslike = (id) => {
+    const deslike = dataCard.map(repo => {
+      return repo.id === id ? { ...repo, favorite: false } : repo
+    })
+    localStorage.setItem('repository', JSON.stringify(deslike));
+    setData(deslike)
+  }
 
   return (
     <Grid container>
@@ -201,8 +221,16 @@ export default function RecipeReviewCard(props) {
                 <Divider />
 
                 <CardActions disableSpacing sx={{ backgroundColor: '#fff', height: 40}}>
-                  <IconButton aria-label="add to favorites">
-                    <BiLike style={styles.iconsFooter} />
+                  <IconButton aria-label="add to favorites" >
+                    {
+                      item.favorite === true ? (
+                        <ThumbUpIcon sx={styles.favorite} onClick={() => handleDeslike(item.id)} />
+                      )
+                      :
+                      (
+                        <ThumbUpIcon sx={styles.iconsFooter} onClick={() => handleLike(item.id)} />
+                      )
+                    }
                   </IconButton>
                   <IconButton aria-label="share" onClick={() => modal(item.id)}>
                     <FiTrash style={styles.iconsFooter} />
@@ -214,7 +242,7 @@ export default function RecipeReviewCard(props) {
                     aria-expanded={expanded}
                     aria-label="show more"
                   >
-                    {/* <AddIcon /> */}
+                    {/* <AddIcon />  */}
                     <Typography sx={{fontSize: 12, color: "#42a5f5"}}>Ver detalhes</Typography>
                   </ExpandMore>
                 </CardActions>
