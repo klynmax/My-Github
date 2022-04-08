@@ -5,6 +5,7 @@ import Grid from '@mui/material/Grid';
 import Table from '../../components/TableRepository';
 import DialogNew from '../../components/DialogNew';
 import Context from '../../Context/Context';
+import Empty from '../../components/Empty';
 
 function Repository() {
 
@@ -28,9 +29,30 @@ function Repository() {
                     <DialogNew buttonName="Novo reposiório" />
                 </Grid>
                 <Grid item lg={12}>
-                    <div style={{marginTop: 40}}>
-                        <Table rows={repositoryData} />
-                    </div>
+                    {
+                        repositoryData.length > 0 ? (
+                            <div style={{marginTop: 40}}>
+                                <Table rows={repositoryData} />
+                            </div>
+                        )
+                        :
+                        (
+                            <Grid
+                                container
+                                direction="row"
+                                justifyContent="center"
+                                alignItems="center"
+                                xl={12}
+                            >
+                                <Grid item sx={{marginTop: 15}}>
+                                    <Empty 
+                                        title="Nenhum Repositorio Cadastrado!"
+                                        text="Cadastre um novo repositorio"
+                                    />
+                                </Grid>
+                            </Grid>
+                        )
+                    }
                 </Grid>
             </Grid>
         </Container>

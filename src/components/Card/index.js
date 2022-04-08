@@ -15,7 +15,6 @@ import Divider from '@mui/material/Divider';
 
 import { FiUserPlus, FiUserCheck, FiTrash } from "react-icons/fi";
 import { GoRepo } from "react-icons/go";
-import { BiLike } from "react-icons/bi";
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 
 import Context from '../../Context/Context';

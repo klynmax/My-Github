@@ -3,28 +3,17 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import Button from '@mui/material/Button';
-import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
-import ListItem from '@mui/material/ListItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 import { Grid, Typography } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
-import BookOutlinedIcon from '@mui/icons-material/BookOutlined';
 import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
 
 import { DiJava, DiJsBadge, DiPython, DiPhp, DiRuby } from "react-icons/di";
 import { SiTypescript, SiCsswizardry } from "react-icons/si";
 import { AiFillHtml5, AiOutlineFrown } from "react-icons/ai";
-import { BsFillEmojiFrownFill } from "react-icons/bs";
-
-import Poper from '../Popper';
-import RepositoryList from '../RepositoryList'
 
 
 const style = {
@@ -105,8 +94,6 @@ export default function SwipeableTemporaryDrawer(props) {
   const redirect = (url) => {
     window.location.href = url
   }
-
-  const bullRGB = <span style={style.bullet}>•</span>;
 
   React.useEffect(async () => {
     const result = await fetch(`${userData.repos_url}`,

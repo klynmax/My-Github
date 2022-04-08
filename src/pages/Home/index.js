@@ -1,11 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
 
-
-import Context from "../../Context/Context";
 import CardsDash from '../../components/CardsDash';
 import PieGraphic from '../../components/PieGraphic';
 import Ranking from "../../components/Ranking";
@@ -41,15 +38,6 @@ function Home() {
             return obj
         }, {})
     }, [repositoryData])
-
-    // const myLang = language && language.reduce(function(obj, lang, x, y){
-    //     if(!obj[lang]){
-    //         obj[lang] = 1;
-    //     } else {
-    //         obj[lang]++;
-    //     }
-    //     return obj
-    // }, {})
 
     return(
         <Container fixed>

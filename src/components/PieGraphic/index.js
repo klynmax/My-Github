@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 import { Typography } from '@mui/material';
@@ -112,8 +112,8 @@ export default function PieGraphic(props) {
                                 height={250}
                                 label
                             />
-                            <Typography sx={style.textPie}><b>Total</b></Typography>
-                            <Typography sx={style.numbePie}><b>{value}</b></Typography>
+                            {/* <Typography sx={style.textPie}><b>Total</b></Typography>
+                            <Typography sx={style.numbePie}><b>{value}</b></Typography> */}
                         </Grid>
                         <Grid item lg={2} sx={{marginTop: 5}}>
                             <Box display="flex" m={1}>

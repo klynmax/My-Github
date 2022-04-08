@@ -8,7 +8,6 @@ import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 // import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
-import MailIcon from '@mui/icons-material/Mail';
 import { Grid } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
 import DashboardIcon from '@mui/icons-material/Dashboard';

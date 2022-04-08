@@ -4,7 +4,6 @@ import Card from '@mui/material/Card';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import { FaUserFriends } from "react-icons/fa";
 import { RiGitRepositoryFill } from "react-icons/ri";
 

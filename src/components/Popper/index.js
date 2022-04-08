@@ -22,8 +22,6 @@ export default function SimplePopper(props) {
     setAnchorEl(anchorEl ? null : event.currentTarget);
   };
 
-  console.log('123', value)
-
   const open = Boolean(anchorEl);
   const id = open ? "simple-popper" : undefined;
 

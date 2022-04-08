@@ -1,23 +1,17 @@
 import React, { useState, useContext, useEffect } from "react";
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
-import { Typography } from "@mui/material";
-import { Box } from "@mui/system";
 import IconButton from '@mui/material/IconButton';
 import GridViewOutlinedIcon from '@mui/icons-material/GridViewOutlined';
 import GridViewRoundedIcon from '@mui/icons-material/GridViewRounded';
 import DensityMediumOutlinedIcon from '@mui/icons-material/DensityMediumOutlined';
 import TableRowsRoundedIcon from '@mui/icons-material/TableRowsRounded';
-import ReorderIcon from '@mui/icons-material/Reorder';
 
-import SearchIcon from '@mui/icons-material/Search';
-
-import FieldSearch from '../../components/FieldSearch';
 import Card from '../../components/Card';
 import Table from '../../components/Table';
 import Context from '../../Context/Context';
 import DialogNew from '../../components/DialogNew';
-import DrawerRigth from '../../components/DrawerRigth';
+import Empty from '../../components/Empty';
 
 const styles = {
     iconActive: {
@@ -35,12 +29,13 @@ function Users() {
 
     const repo = JSON.parse(localStorage.getItem('repository'));
     const { data, setData } = useContext(Context);
+    const [list, setList] = useState(true)
 
     useEffect(() => {
         setData(repo.reverse())
     }, [])
 
-    const [list, setList] = useState(true)
+    console.log(data)
 
     return(
         <Container fixed>
@@ -95,14 +90,33 @@ function Users() {
                 <Grid container spacing={10}>
                     <Grid item lg={12}>
                         {
-                            list === true ? (
-                                <Card dataCard={data} />
+                            data.length > 0 ? (
+                                list === true ? (
+                                    <Card dataCard={data} />
+                                )
+                                :
+                                (
+                                    <div style={{marginTop: 40}}>
+                                        <Table data={data} />
+                                    </div>
+                                )
                             )
                             :
                             (
-                                <div style={{marginTop: 40}}>
-                                    <Table data={data} />
-                                </div>
+                                <Grid
+                                    container
+                                    direction="row"
+                                    justifyContent="center"
+                                    alignItems="center"
+                                    xl={12}
+                                >
+                                    <Grid item sx={{marginTop: 10}}>
+                                        <Empty 
+                                            title="Nenhum Repositorio Cadastrado!"
+                                            text="Cadastre um novo repositorio"
+                                        />
+                                    </Grid>
+                                </Grid>
                             )
                         }
                     </Grid>
