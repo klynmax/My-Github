@@ -35,8 +35,6 @@ function Users() {
         setData(repo.reverse())
     }, [])
 
-    console.log(data)
-
     return(
         <Container fixed>
             <Grid

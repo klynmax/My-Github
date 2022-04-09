@@ -39,6 +39,24 @@ function Home() {
         }, {})
     }, [repositoryData])
 
+    // var x = 0;
+    // userData && userData.map((item) => {
+    //     if(item.favorite == true){
+    //         x++
+    //     }
+    // })
+
+    var favorite = 0;
+    userData && userData.forEach(item => {
+        /* eslint eqeqeq: 0 */
+        if(item.favorite == true){
+            favorite++
+        }
+        // console.log('123', element)
+    });
+
+    //console.log('data', x)
+
     return(
         <Container fixed>
             <Grid
@@ -65,13 +83,13 @@ function Home() {
                 <Grid item lg>
                     <CardsDash 
                         title="Linguagens"
-                        number={total}
+                        number="10"
                     />
                 </Grid>
                 <Grid item lg>
-                    <CardsDash 
+                <CardsDash 
                         title="Favoritos"
-                        number="12"
+                        number={favorite}
                     />
                 </Grid>
             </Grid>

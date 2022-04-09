@@ -6,6 +6,12 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { FaUserFriends } from "react-icons/fa";
 import { RiGitRepositoryFill } from "react-icons/ri";
+import { AiFillStar } from "react-icons/ai";
+import { GoBook } from "react-icons/go";
+import DeleteIcon from '@mui/icons-material/Delete';
+import InfoIcon from '@mui/icons-material/Info';
+
+import Tooltip from '../Tooltip';
 
 const style = {
   root: {
@@ -43,7 +49,7 @@ const style = {
     height: 100
   },
   tagRed: {
-    backgroundColor: '#ff9800',
+    backgroundColor: '#ffef62',
     width: 10,
     height: 100
   },
@@ -56,6 +62,10 @@ const style = {
     backgroundColor: '#ba68c8',
     width: 10,
     height: 100
+  },
+  tootipIcon: {
+    width: 20,
+    height: 20
   }
 }
 
@@ -123,6 +133,28 @@ export default function ImgMediaCard(props) {
                                     />
                                 )
                             }
+                            {
+                                title === 'Favoritos' && (
+                                    <AiFillStar 
+                                        style={{
+                                            height: 30,
+                                            width: 30,
+                                            color: '#ffef62'
+                                        }} 
+                                    />
+                                )
+                            }
+                            {
+                                title === 'Linguagens' && (
+                                    <GoBook 
+                                        style={{
+                                            height: 30,
+                                            width: 30,
+                                            color: '#4caf50'
+                                        }} 
+                                    />
+                                )
+                            }
                         </Box>
                         {/* <PersonOutlineOutlinedIcon /> */}
                     </Grid>
@@ -131,7 +163,7 @@ export default function ImgMediaCard(props) {
                             <Typography style={style.titleStyle}><b>{title}</b></Typography>
                         </Box>
                         <Box m={1}>
-                            <Typography style={style.number}><b>{number}</b></Typography>
+                        <Typography style={style.number}><b>{number}</b>{title == 'Linguagens' ? <Tooltip icon={<InfoIcon sx={style.tootipIcon} />} /> : ''}</Typography>
                         </Box>
                     </Grid>
                 </Box>
