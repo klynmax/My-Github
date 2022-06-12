@@ -6,6 +6,11 @@ import GridViewOutlinedIcon from '@mui/icons-material/GridViewOutlined';
 import GridViewRoundedIcon from '@mui/icons-material/GridViewRounded';
 import DensityMediumOutlinedIcon from '@mui/icons-material/DensityMediumOutlined';
 import TableRowsRoundedIcon from '@mui/icons-material/TableRowsRounded';
+import TextField from '@mui/material/TextField';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import SearchIcon from '@mui/icons-material/Search';
+import Divider from '@mui/material/Divider';
+import Button from '@mui/material/Button';
 
 import Card from '../../components/Card';
 import Table from '../../components/Table';
@@ -30,10 +35,31 @@ function Users() {
     const repo = JSON.parse(localStorage.getItem('repository'));
     const { data, setData } = useContext(Context);
     const [list, setList] = useState(true)
+    const [values, setValues] = useState({
+        weight: '',
+    });
+
+    const handleChange = (prop) => (event) => {
+         setValues({ ...values, [prop]: event.target.value });
+    };
 
     useEffect(() => {
         setData(repo.reverse())
     }, [])
+
+    function newArray(value) {
+        return value.name === values.weight;
+    }
+
+    const search = () => {
+        let newArr = data?.filter(newArray)
+            setData(newArr)
+            setValues({weight: ''})
+    }
+
+    const clean = () => {
+        setData(repo)
+    }
 
     return(
         <Container fixed>
@@ -45,8 +71,45 @@ function Users() {
                 xl={12}
             >
                 <Grid container spacing={14}>
-                    <Grid item lg={10} sx={{marginTop: 1}}>
+                    <Grid item sx={{marginTop: 1}}>
                         <DialogNew buttonName="Novo usuário" />
+                    </Grid>
+                    <Grid item lg={4}>
+                        <OutlinedInput 
+                            onChange={handleChange('weight')}
+                            value={values.weight}
+                            placeholder="Pesquise pelo nome do usuário"
+                            sx={{
+                                height: 35,
+                                width: 400,
+                                fontSize: 12,
+                                marginTop: 1,
+                                marginLeft: -5
+                            }}
+                            endAdornment={
+                                <>
+                                    <Divider orientation="vertical" flexItem />
+                                    <SearchIcon 
+                                        onClick={search} 
+                                        sx={{
+                                            cursor: 'pointer',
+                                            marginLeft: '4%'
+                                        }}
+                                    />
+                                </>
+                            }
+                        />
+                    </Grid>
+                    <Grid item lg={3} sx={{marginTop: 1}}>
+                        <Button 
+                            variant="outlined"
+                            sx={{
+                                fontSize: 11
+                            }}
+                            onClick={clean}
+                        >
+                            Limpar Filtros
+                        </Button>
                     </Grid>
                     <Grid item lg={2} >
                         {   list === true ? (

@@ -74,7 +74,7 @@ export default function PieGraphic(props) {
 
     const {data, value} = props;
 
-    const [language, setLanguage] = React.useState([])
+    const [language, setLanguage] = React.useState([]);
 
     React.useEffect(() => {
         setLanguage([
@@ -90,6 +90,7 @@ export default function PieGraphic(props) {
             ['SCSS', data.SCSS],
         ])
     }, [data])
+
 
     return(
         <Grid container lg={12} spacing={4}>
@@ -111,6 +112,7 @@ export default function PieGraphic(props) {
                                 color={colors}
                                 height={250}
                                 label
+                                // loading={loading}
                             />
                             {/* <Typography sx={style.textPie}><b>Total</b></Typography>
                             <Typography sx={style.numbePie}><b>{value}</b></Typography> */}

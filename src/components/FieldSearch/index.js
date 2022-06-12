@@ -101,18 +101,6 @@ export default function InputAdornments(props) {
                   id="outlined-adornment-weight"
                   value={values.weight}
                   onChange={handleChange('weight')}
-                  // endAdornment={
-                  //   <>
-                  //   <Divider orientation="vertical" flexItem />
-                  //   <AddOutlinedIcon 
-                  //     onClick={saveRepository} 
-                  //     sx={{
-                  //       cursor: 'pointer',
-                  //       marginLeft: '5%'
-                  //     }}
-                  //   />
-                  //   </>
-                  // }
                   aria-describedby="outlined-weight-helper-text"
                   inputProps={{
                     'aria-label': 'weight',
@@ -211,18 +199,6 @@ export default function InputAdornments(props) {
           </>
         )
       }
-
-      {/* <AlertSuccess 
-        openAlert={success}
-        closeAlert={handleClose}
-        text={"Usuário(a) cadastrado com sussesso!"}
-      /> */}
-
-      {/* <AlertErro 
-        openAlertErro={erro}
-        closeAlertErro={handleClose}
-        textErro={"Usuário(a) não encontrado!"}
-      /> */}
     </Box>
   );
 }
