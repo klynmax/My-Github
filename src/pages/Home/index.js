@@ -9,7 +9,6 @@ import Ranking from "../../components/Ranking";
 import LineCharts from "../../components/LineCharts";
 
 function Home() {
-    // const { data } = useContext(Context);
     const users = JSON.parse(localStorage.getItem('repository'));
     const repository = JSON.parse(localStorage.getItem('myRepository'));
     const [userData, setUserData] = useState('');
@@ -39,28 +38,17 @@ function Home() {
         }, {})
     }, [repositoryData])
 
-    // var x = 0;
-    // userData && userData.map((item) => {
-    //     if(item.favorite == true){
-    //         x++
-    //     }
-    // })
-
     var favorite = 0;
     userData && userData.forEach(item => {
         /* eslint eqeqeq: 0 */
         if(item.favorite == true){
             favorite++
         }
-        // console.log('123', element)
     });
-
-    //console.log('data', x)
 
     return(
         <Container fixed>
             <Grid
-            // item
                 container
                 direction="row"
                 justifyContent="flex-start"
@@ -71,13 +59,13 @@ function Home() {
                 <Grid item lg>
                     <CardsDash 
                         title="Usuários"
-                        number={userData.length}
+                        number={userData !== null && userData !== undefined ? userData.length : "0"}
                     />
                 </Grid>
                 <Grid item lg>
                     <CardsDash 
                         title="Repositórios"
-                        number={repositoryData.length}
+                        number={repositoryData !== null && repositoryData !== undefined ? repositoryData.length : "0"}
                     />
                 </Grid>
                 <Grid item lg>
@@ -94,7 +82,6 @@ function Home() {
                 </Grid>
             </Grid>
             <Grid
-            // item
                 container
                 direction="row"
                 justifyContent="flex-start"
@@ -111,7 +98,6 @@ function Home() {
                 </Grid>
             </Grid>
             <Grid
-            // item
                 container
                 direction="row"
                 justifyContent="flex-start"
